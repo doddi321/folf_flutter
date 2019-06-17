@@ -1,0 +1,22 @@
+import 'package:flutter/material.dart';
+import 'package:folf/pages/signInPage.dart';
+import 'package:folf/pages/signUpPage.dart';
+
+void main() => runApp(FolfApp());
+
+class FolfApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+          brightness: Brightness.light,
+          primaryColor: Color(0xFF2CA58D),
+          accentColor: Color(0xFFFF9B42)),
+      initialRoute: '/',
+      routes: {
+        '/': (BuildContext context) => SignInPage(),
+        '/signup': (BuildContext context) => SignUpPage(),
+      },
+    );
+  }
+}

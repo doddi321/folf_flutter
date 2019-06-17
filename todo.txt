@@ -1,0 +1,4 @@
+- github
+- configure appið svo iphone geti líka notað database-inn 
+- taka firebase af testing mode.
+- gera betra validation fyrir password

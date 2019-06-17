@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "477531768872",
+    "firebase_url": "https://folf-a2165.firebaseio.com",
+    "project_id": "folf-a2165",
+    "storage_bucket": "folf-a2165.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477531768872:android:8777d3471be106a4",
+        "android_client_info": {
+          "package_name": "com.example.folf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "477531768872-9dss1n613pnj0oafubbfi5gepcljo1v2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5rCu5k_awjCH8y6Hg78uTU1aTHB9aviM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "477531768872-9dss1n613pnj0oafubbfi5gepcljo1v2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
