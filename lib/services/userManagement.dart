@@ -13,7 +13,7 @@ class UserManagement {
 
   // stores newUser in database.
   _onCreateNewUserSuccess(user) {
-    User newUser = User(user.email, user.name, user.username, user.uid);
+    User newUser = User(user.email, null, null, user.uid);
     Firestore.instance
         .collection('/users')
         .add(newUser.toJson())
