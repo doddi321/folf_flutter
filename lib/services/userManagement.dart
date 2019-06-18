@@ -4,27 +4,33 @@ import 'package:flutter/material.dart';
 import 'package:folf/models/user.dart';
 
 class UserManagement {
-  createNewUser(String email, String password) {
+
+  User _user;
+
+  /*
+    creates user for authentication via email and password
+  */
+  createNewUser(String email, String password, String username, onCreateNewUserError) {
+    // create _user to pass data to the onSuccess method to store new user in database.
+    _user = new User(email, null, username, null);
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password)
         .then(_onCreateNewUserSuccess)
-        .catchError(_onCreateNewUserError);
+        .catchError(onCreateNewUserError);
   }
 
-  // stores newUser in database.
-  _onCreateNewUserSuccess(user) {
-    User newUser = User(user.email, null, null, user.uid);
+  /*
+    stores new user in database.
+  */
+  _onCreateNewUserSuccess(userResponse) {
+    _user.uid = userResponse.uid; // add user id to new user
     Firestore.instance
         .collection('/users')
-        .add(newUser.toJson())
+        .add(_user.toJson())
         .then(_onStoreNewUserSuccess)
         .catchError(_onStoreNewUserError);
   }
-
-  _onCreateNewUserError(e) {
-    print(e);
-  }
-
+  
   _onStoreNewUserSuccess(response) {
     print(response);
   }

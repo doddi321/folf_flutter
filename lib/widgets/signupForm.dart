@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:folf/services/userManagement.dart';
 
 class SignupForm extends StatefulWidget {
@@ -16,6 +17,8 @@ class _SignupFormState extends State<SignupForm> {
   String _password = '';
   String _username = '';
 
+  String emailErrorText;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -23,7 +26,7 @@ class _SignupFormState extends State<SignupForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          _buildEmailTextField(),
+          _buildEmailTextField(emailErrorText),
           _buildUsernameTextField(),
           _buildPasswordTextField(),
           SizedBox(height: 10.0),
@@ -33,13 +36,13 @@ class _SignupFormState extends State<SignupForm> {
           SizedBox(height: 10.0),
           _buildFacebookButton(),
           SizedBox(height: 10.0),
-          _useWithoutSigninpButton()
+          _useWithoutSigninButton()
         ],
       ),
     );
   }
 
-  InputDecoration _inputDecoration(String forWho) {
+  InputDecoration _inputDecoration(String forWho, String errorText) {
     BorderRadius borderRadius;
     Icon icon;
     if (forWho == 'email') {
@@ -70,12 +73,13 @@ class _SignupFormState extends State<SignupForm> {
         prefixIcon: icon,
         labelText: forWho,
         filled: true,
+        errorText: errorText,
         fillColor: Colors.white);
   }
 
-  Widget _buildEmailTextField() {
+  Widget _buildEmailTextField(errorText) {
     return TextFormField(
-        decoration: _inputDecoration('email'),
+        decoration: _inputDecoration('email', errorText),
         keyboardType: TextInputType.emailAddress,
         validator: (value) {
           String p =
@@ -91,7 +95,7 @@ class _SignupFormState extends State<SignupForm> {
 
   Widget _buildUsernameTextField() {
     return TextFormField(
-        decoration: _inputDecoration('username'),
+        decoration: _inputDecoration('username', null),
         validator: (value) {
           if (value.isEmpty) {
             return 'Username is missing';
@@ -104,10 +108,10 @@ class _SignupFormState extends State<SignupForm> {
   Widget _buildPasswordTextField() {
     return TextFormField(
         obscureText: true,
-        decoration: _inputDecoration('password'),
+        decoration: _inputDecoration('password', null),
         validator: (value) {
-          if (value.isEmpty) {
-            return 'Password is not sufficient';
+          if (value.length < 6) {
+            return 'Password needs to be at least 6 characters';
           }
           _password = value;
           return null;
@@ -122,7 +126,20 @@ class _SignupFormState extends State<SignupForm> {
         textColor: Colors.white,
         onPressed: () {
           if (_formKey.currentState.validate()) {
-            UserManagement().createNewUser(_email, _password);
+            onCreateUserError(err) {
+              if (err.code == 'ERROR_EMAIL_ALREADY_IN_USE') {
+                setState(() => (emailErrorText = err.message));
+              } else {
+                final snackBar = SnackBar(
+                  content: Text('Unexpected error while signing up.'),
+                  backgroundColor: Colors.redAccent,
+                );
+                Scaffold.of(context).showSnackBar(snackBar);
+              }
+            }
+
+            UserManagement()
+                .createNewUser(_email, _password, _username, onCreateUserError);
           }
         },
         child: Text('Sign Up'),
@@ -167,7 +184,7 @@ class _SignupFormState extends State<SignupForm> {
     );
   }
 
-  Widget _useWithoutSigninpButton() {
+  Widget _useWithoutSigninButton() {
     return InkWell(
       onTap: () {},
       child: Container(
