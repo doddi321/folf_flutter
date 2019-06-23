@@ -16,6 +16,14 @@ class Course extends StatelessWidget {
     );
   }
 
+    Widget _buildCourseInfo() {
+    return Container(
+      color: Colors.blue,
+      height: 50,
+      child: Row(),
+    );
+  }
+
   Widget _buildCourseImage() {
     return Container(
         decoration: BoxDecoration(
@@ -32,48 +40,45 @@ class Course extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            Align(
-              alignment: FractionalOffset.topRight,
-              child: Container(
-                margin: EdgeInsets.all(10),
-                decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: Color.fromRGBO(
-                255, 255, 255, 0.9)),
-                child: IconButton(
-                  iconSize: 32,
-                  icon: Icon(
-                    LineIcons.heart_o,
-                    color: Colors.red[300],
-                  ),
-                  onPressed: () {},
-                ),
-              ),
-            ),
-            Expanded(
-              child: Align(
-                alignment: FractionalOffset.bottomLeft,
-                child: Container(
-                  margin: EdgeInsets.all(5),
-                  child: Text(
-                    "Guðmundarlundur",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-            ),
+            _heartButton(),
+            _courseTitle()
           ],
           crossAxisAlignment: CrossAxisAlignment.stretch,
         ));
   }
 
-  Widget _buildCourseInfo() {
-    return Container(
-      color: Colors.blue,
-      height: 50,
-      child: Row(),
+  Widget _heartButton() {
+    return Align(
+      alignment: FractionalOffset.topRight,
+      child: Container(
+        margin: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+            shape: BoxShape.circle, color: Color.fromRGBO(255, 255, 255, 0.9)),
+        child: IconButton(
+          iconSize: 32,
+          icon: Icon(
+            LineIcons.heart_o,
+            color: Colors.red[300],
+          ),
+          onPressed: () {},
+        ),
+      ),
+    );
+  }
+
+  Widget _courseTitle() {
+    return Expanded(
+      child: Align(
+        alignment: FractionalOffset.bottomLeft,
+        child: Container(
+          margin: EdgeInsets.all(5),
+          child: Text(
+            "Guðmundarlundur",
+            style: TextStyle(
+                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
     );
   }
 }
