@@ -15,14 +15,15 @@ class _CoursesPageState extends State<CoursesPage> {
       appBar: AppBar(
         title: Text('Courses'),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFF5F5F5),
       body: ListView.separated(
         padding: EdgeInsets.all(10.0),
-        itemCount: 2,
+        itemCount: 5,
         itemBuilder: (BuildContext context, int index) {
           return course;
         },
-        separatorBuilder: (BuildContext context, int index) => const Divider(),
+        separatorBuilder: (BuildContext context, int index) => Container(
+            margin: EdgeInsets.only(right: 10, left: 10), child: Divider()),
       ),
     ));
   }

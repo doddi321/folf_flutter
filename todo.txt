@@ -1,3 +1,4 @@
 - configure appið svo iphone geti líka notað database-inn 
 - taka firebase af testing mode.
 - ef email er tekið eða username, birta ehv texta
+- fix chinese letter thing with icons so you can make the bakset image a svg
