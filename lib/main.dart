@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:folf/pages/coursesPage.dart';
-import 'package:folf/pages/signInPage.dart';
-import 'package:folf/pages/signUpPage.dart';
+import 'package:folf/pages/courseDetails/courseDetailPage.dart';
+import 'package:folf/pages/courses/coursesPage.dart';
+import 'package:folf/pages/signin/signInPage.dart';
+import 'package:folf/pages/signup/signUpPage.dart';
 
 void main() => runApp(FolfApp());
 
@@ -13,11 +14,12 @@ class FolfApp extends StatelessWidget {
           brightness: Brightness.light,
           primaryColor: Color(0xFF2CA58D),
           accentColor: Color(0xFFFF9B42)),
-      initialRoute: '/courses',
+      initialRoute: '/courseDetails',
       routes: {
         '/': (BuildContext context) => SignInPage(),
         '/signup': (BuildContext context) => SignUpPage(),
         '/courses': (BuildContext context) => CoursesPage(),
+        '/courseDetails': (BuildContext context) => CourseDetailPage(),
       },
     );
   }

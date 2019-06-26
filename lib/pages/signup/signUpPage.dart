@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:folf/widgets/signupForm.dart';
+import 'package:folf/pages/signup/signupForm.dart';
 
 class SignUpPage extends StatelessWidget {
   @override
@@ -21,7 +21,7 @@ class SignUpPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Image.asset('assets/fake-logo.png'),
+          Image.asset('assets/images/fake-logo.png'),
           _buildBackButton(context),
           SignupForm()
         ],

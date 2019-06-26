@@ -2,3 +2,6 @@
 - taka firebase af testing mode.
 - ef email er tekið eða username, birta ehv texta
 - fix chinese letter thing with icons so you can make the bakset image a svg
+
+- laga hvað er widget og möppu structure
+- hjarta ætti að vera widget

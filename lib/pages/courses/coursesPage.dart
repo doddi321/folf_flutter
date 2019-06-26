@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:folf/widgets/course.dart';
+import 'package:folf/pages/courses/course.dart';
 
 class CoursesPage extends StatefulWidget {
   _CoursesPageState createState() => _CoursesPageState();

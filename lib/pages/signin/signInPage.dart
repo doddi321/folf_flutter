@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:folf/widgets/signinForm.dart';
+import 'package:folf/pages/signin/signinForm.dart';
 
 class SignInPage extends StatelessWidget {
   @override
@@ -21,7 +21,7 @@ class SignInPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Image.asset('assets/fake-logo.png'),
+          Image.asset('assets/images/fake-logo.png'),
           SigninForm()
         ],
       ),

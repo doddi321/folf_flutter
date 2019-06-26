@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:folf/constants/myIcons.dart';
+import 'package:folf/widgets/heartButton.dart';
 import 'package:folf/widgets/starDisplay.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -23,7 +25,7 @@ class Course extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/course-standin.jpg"),
+              image: AssetImage("assets/images/course-standin.jpg"),
               fit: BoxFit.cover,
             ),
             color: Colors.greenAccent,
@@ -34,28 +36,9 @@ class Course extends StatelessWidget {
         height: 125,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[_heartButton(), _courseTitle()],
+          children: <Widget>[HeartButton(), _courseTitle()],
           crossAxisAlignment: CrossAxisAlignment.stretch,
         ));
-  }
-
-  Widget _heartButton() {
-    return Align(
-      alignment: FractionalOffset.topRight,
-      child: Container(
-        margin: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            shape: BoxShape.circle, color: Color.fromRGBO(255, 255, 255, 0.9)),
-        child: IconButton(
-          iconSize: 32,
-          icon: Icon(
-            LineIcons.heart_o,
-            color: Colors.red[300],
-          ),
-          onPressed: () {},
-        ),
-      ),
-    );
   }
 
   Widget _courseTitle() {
@@ -105,10 +88,7 @@ class Course extends StatelessWidget {
     return Row(
       children: <Widget>[
         Container(child: Text("9 holur")),
-        Image(
-          image: AssetImage('assets/basket.png'),
-          height: 24,
-        ),
+        Icon(MyIcons.basket),
         VerticalDivider(width: 0,)
       ],
     );
