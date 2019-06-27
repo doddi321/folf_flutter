@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:folf/constants/myColors.dart';
 
 import 'bodyDetails/bodyDetails.dart';
 import 'headDetails.dart';
@@ -8,6 +9,24 @@ class CourseDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         child: Scaffold(
+            bottomSheet: Material(
+              color: MyColors.courseDetailOrange,
+              child: InkWell(
+                onTap: () {},
+                child: Container(
+                  height: 60,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "HEFJA LEIK",
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
             appBar: AppBar(
               title: Text('Guðmundarlundur'),
             ),

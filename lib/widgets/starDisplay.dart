@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class StarDisplay extends StatelessWidget {
   final int value;
-  const StarDisplay({this.value = 0});
+  final bool displayNumber;
+  const StarDisplay({this.value = 0, this.displayNumber = true});
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +15,15 @@ class StarDisplay extends StatelessWidget {
         size: 16,
       );
     });
-    rating.insert(
-        0,
-        Text(
-          value.toString(),
-          style: TextStyle(color: Color(starColor)),
-        ));
+    
+    if (displayNumber) {
+      rating.insert(
+          0,
+          Text(
+            value.toString(),
+            style: TextStyle(color: Color(starColor)),
+          ));
+    }
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: rating,
