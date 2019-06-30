@@ -4,3 +4,10 @@
 - ef email er tekið eða username, birta ehv texta
 
 - skoðaShared element transition
+
+
+
+APP IDEAS:
+    - snorra hugmynd
+    - set spilið
+    - hátalarar linkaðir saman
