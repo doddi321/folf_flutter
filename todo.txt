@@ -5,9 +5,12 @@
 
 - skoðaShared element transition
 
+- weather
+- conditions
 
 
 APP IDEAS:
     - snorra hugmynd
     - set spilið
+    - set spilið + vekjaraklukka + eitthvað annað kannski
     - hátalarar linkaðir saman
