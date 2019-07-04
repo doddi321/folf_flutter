@@ -64,7 +64,7 @@ flutter:
   fonts:
     - family: custom_icons
       fonts:
-        - asset: assets\fonts\custom_icons.ttf
+        - asset: assets/fonts/custom_icons.ttf
         
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic

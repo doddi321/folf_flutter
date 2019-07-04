@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:folf/constants/myIcons.dart';
 import 'package:folf/pages/courseDetails/bodyDetails/expandableTextTile.dart';
 import 'package:folf/pages/courseDetails/bodyDetails/ratingDetails.dart';
 import 'package:folf/pages/courseDetails/bodyDetails/ringInfo.dart';
