@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:folf/constants/myColors.dart';
 
+import 'BodySelectCourse.dart';
 import 'bodyDetails/bodyDetails.dart';
 import 'headDetails.dart';
 
