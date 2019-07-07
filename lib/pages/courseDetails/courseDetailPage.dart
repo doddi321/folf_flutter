@@ -36,7 +36,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
       _animation.removeStatusListener(handler);
       _controller.reset();
       startGameButtonHeight = 0;
-      widg = BodyDetails();
+      widg = BodySelectCourse();
       _animation = Tween(begin: 1.0, end: 0.0).animate(CurvedAnimation(
         parent: _controller,
         curve: Curves.fastOutSlowIn,
@@ -83,29 +83,28 @@ class _CourseDetailPageState extends State<CourseDetailPage>
 
   Widget _buildStartGameButton() {
     return AnimatedBuilder(
-                animation: _controller,
-                builder: (BuildContext context, Widget child) {
-                  return Material(
-                    color: MyColors.courseDetailOrange,
-                    child: InkWell(
-                      onTap: () {
-                        _controller.forward();
-                      },
-                      child: Container(
-                        height: startGameButtonHeight*(_animation.value+1),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              "HEFJA LEIK",
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 16),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                });
+        animation: _controller,
+        builder: (BuildContext context, Widget child) {
+          return Material(
+            color: MyColors.courseDetailOrange,
+            child: InkWell(
+              onTap: () {
+                _controller.forward();
+              },
+              child: Container(
+                height: startGameButtonHeight * (_animation.value + 1),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "HEFJA LEIK",
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
   }
 }

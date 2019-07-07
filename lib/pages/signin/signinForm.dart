@@ -14,6 +14,16 @@ class _SigninFormState extends State<SigninForm> {
   String _email = '';
   String _password = '';
 
+  String emailErrorText;
+  String passwordErrorText;
+
+  bool isLoading = false;
+
+  void clearErrorTexts() {
+    emailErrorText = null;
+    passwordErrorText = null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -21,8 +31,8 @@ class _SigninFormState extends State<SigninForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          _buildEmailTextField(),
-          _buildPasswordTextField(),
+          _buildEmailTextField(emailErrorText),
+          _buildPasswordTextField(passwordErrorText),
           SizedBox(height: 10.0),
           _buildSubmitButton(),
           SizedBox(height: 10.0),
@@ -40,7 +50,7 @@ class _SigninFormState extends State<SigninForm> {
     );
   }
 
-  InputDecoration _inputDecoration(String forWho) {
+  InputDecoration _inputDecoration(String forWho, String errorText) {
     BorderRadius borderRadius;
     Icon icon;
     if (forWho == 'email') {
@@ -68,12 +78,14 @@ class _SigninFormState extends State<SigninForm> {
         prefixIcon: icon,
         labelText: forWho,
         filled: true,
+        errorText: errorText,
         fillColor: Colors.white);
   }
 
-  Widget _buildEmailTextField() {
+  Widget _buildEmailTextField(errorText) {
     return TextFormField(
-        decoration: _inputDecoration('email'),
+        keyboardType: TextInputType.emailAddress,
+        decoration: _inputDecoration('email', errorText),
         validator: (value) {
           String p =
               r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -86,10 +98,10 @@ class _SigninFormState extends State<SigninForm> {
         });
   }
 
-  Widget _buildPasswordTextField() {
+  Widget _buildPasswordTextField(String errorText) {
     return TextFormField(
         obscureText: true,
-        decoration: _inputDecoration('password'),
+        decoration: _inputDecoration('password', errorText),
         validator: (value) {
           if (value.isEmpty) {
             return 'Password cannot be empty';
@@ -107,15 +119,47 @@ class _SigninFormState extends State<SigninForm> {
         textColor: Colors.white,
         onPressed: () {
           if (_formKey.currentState.validate()) {
+            setState(() {
+              isLoading = true;
+            });
             FirebaseAuth.instance
                 .signInWithEmailAndPassword(email: _email, password: _password)
-                .then((response) {})
-                .catchError((e) {
-              print(e);
+                .then((response) {
+              clearErrorTexts();
+              Navigator.popAndPushNamed(context, "/courses");
+            }).catchError((e) {
+              clearErrorTexts();
+              if (e.code == "ERROR_USER_NOT_FOUND") {
+                setState(() =>
+                    (emailErrorText = "There is no user with this email."));
+              } else if (e.code == "ERROR_WRONG_PASSWORD") {
+                setState(() => (passwordErrorText = "The password is invalid."));
+              }
+            }).whenComplete(() {
+              setState(() {
+                isLoading = false;
+              });
             });
           }
         },
-        child: Text('Sign In'),
+        child: Row(
+          children: <Widget>[
+            Container(
+                height: 30,
+                width: 30,
+                child: isLoading
+                    ? CircularProgressIndicator(
+                        backgroundColor: Colors.blue,
+                      )
+                    : Container()),
+            Expanded(
+                child: Center(
+                    child: Padding(
+              padding: const EdgeInsets.only(right: 30),
+              child: Text("Sign in"),
+            )))
+          ],
+        ),
       ),
     );
   }
@@ -190,7 +234,9 @@ class _SigninFormState extends State<SigninForm> {
 
   Widget _useWithoutSigninpButton() {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.popAndPushNamed(context, "/courses");
+      },
       child: Container(
         height: 50,
         decoration: new BoxDecoration(

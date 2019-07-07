@@ -3,6 +3,9 @@ import 'package:folf/constants/myIcons.dart';
 import 'package:folf/widgets/heartButton.dart';
 import 'package:folf/widgets/starDisplay.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
+import 'package:firebase_storage/firebase_storage.dart';
 
 class Course extends StatelessWidget {
   @override
@@ -25,7 +28,9 @@ class Course extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/course-standin.jpg"),
+              image: CachedNetworkImageProvider(
+                "https://firebasestorage.googleapis.com/v0/b/folf-a2165.appspot.com/o/course-standin.jpg?alt=media&token=8f983d27-eb38-4df3-9887-cc07ff9d3df1",
+              ),
               fit: BoxFit.cover,
             ),
             color: Colors.greenAccent,
@@ -89,7 +94,9 @@ class Course extends StatelessWidget {
       children: <Widget>[
         Container(child: Text("9 holur")),
         Icon(MyIcons.basket),
-        VerticalDivider(width: 0,)
+        VerticalDivider(
+          width: 0,
+        )
       ],
     );
   }

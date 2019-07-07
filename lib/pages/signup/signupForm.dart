@@ -16,6 +16,8 @@ class _SignupFormState extends State<SignupForm> {
   String _password = '';
   String _username = '';
 
+  bool isLoading = false;
+
   String emailErrorText;
 
   @override
@@ -125,7 +127,10 @@ class _SignupFormState extends State<SignupForm> {
         textColor: Colors.white,
         onPressed: () {
           if (_formKey.currentState.validate()) {
-            onCreateUserError(err) {
+            setState(() {
+              isLoading = true;
+            });
+            void onCreateUserError(err) {
               if (err.code == 'ERROR_EMAIL_ALREADY_IN_USE') {
                 setState(() => (emailErrorText = err.message));
               } else {
@@ -137,11 +142,34 @@ class _SignupFormState extends State<SignupForm> {
               }
             }
 
-            UserManagement()
-                .createNewUser(_email, _password, _username, onCreateUserError);
+            void onComplete() {
+              setState(() {
+                isLoading = false;
+              });
+            }
+
+            UserManagement(context)
+                .createNewUser(_email, _password, _username, onCreateUserError, onComplete);
           }
         },
-        child: Text('Sign Up'),
+        child: Row(
+          children: <Widget>[
+            Container(
+                height: 30,
+                width: 30,
+                child: isLoading
+                    ? CircularProgressIndicator(
+                        backgroundColor: Colors.blue,
+                      )
+                    : Container()),
+            Expanded(
+                child: Center(
+                    child: Padding(
+              padding: const EdgeInsets.only(right: 30),
+              child: Text("Sign up"),
+            )))
+          ],
+        ),
       ),
     );
   }

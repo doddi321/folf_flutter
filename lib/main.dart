@@ -14,7 +14,7 @@ class FolfApp extends StatelessWidget {
           brightness: Brightness.light,
           primaryColor: Color(0xFF2CA58D),
           accentColor: Color(0xFFFF9B42)),
-      initialRoute: '/courseDetails',
+      initialRoute: '/courses',
       routes: {
         '/': (BuildContext context) => SignInPage(),
         '/signup': (BuildContext context) => SignUpPage(),
