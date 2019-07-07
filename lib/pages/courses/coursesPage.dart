@@ -18,7 +18,7 @@ class _CoursesPageState extends State<CoursesPage> {
       backgroundColor: Color(0xFFF5F5F5),
       body: ListView.separated(
         padding: EdgeInsets.all(10.0),
-        itemCount: 5,
+        itemCount: 1,
         itemBuilder: (BuildContext context, int index) {
           return course;
         },
