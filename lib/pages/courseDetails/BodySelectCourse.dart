@@ -37,15 +37,15 @@ class BodySelectCourse extends StatelessWidget {
     switch (difficulty) {
       case 0:
         difficultyText = "Auðvelt";
-        difficultyColor = Colors.green;
+        difficultyColor = Colors.greenAccent;
         break;
       case 1:
         difficultyText = "Miðlungs";
-        difficultyColor = Colors.yellow;
+        difficultyColor = Colors.orangeAccent;
         break;
       case 2:
         difficultyText = 'Erfitt';
-        difficultyColor = Colors.red;
+        difficultyColor = Colors.redAccent;
         break;
     }
 
@@ -109,7 +109,7 @@ class BodySelectCourse extends StatelessWidget {
       case 'par':
         text = 'Par ' + data + ' ';
         icon = Icon(
-          LineIcons.adjust,
+          LineIcons.clipboard,
           size: 20,
           color: MyColors.textGrey,
         );
@@ -117,8 +117,8 @@ class BodySelectCourse extends StatelessWidget {
       case 'length':
         text = data + ' m ';
         icon = Icon(
-          LineIcons.text_height,
-          size: 20,
+          MyIcons.ruler,
+          size: 18,
           color: MyColors.textGrey,
         );
     }

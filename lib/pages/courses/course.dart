@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:folf/constants/myIcons.dart';
-import 'package:folf/widgets/heartButton.dart';
+import 'package:folf/models/courseModel.dart';
+import 'package:folf/widgets/courseImageContainer.dart';
 import 'package:folf/widgets/starDisplay.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-
-import 'package:firebase_storage/firebase_storage.dart';
 
 class Course extends StatelessWidget {
+
+  final CourseModel course;
+
+  Course({this.course});
+
   @override
   Widget build(BuildContext context) {
     return Card(
       child: Container(
         child: Column(
           children: <Widget>[
-            _buildCourseImage(),
+            CourseImageContainer(
+              heroTag: course.cid,
+              imageUrl: course.thumbnail,
+              leftCornerWidget: _courseTitle(),
+              height: 125,
+            ),
             _buildCourseInfo(),
           ],
         ),
@@ -24,39 +32,16 @@ class Course extends StatelessWidget {
 
   // ------------------------ course image here ----------------------------------
 
-  Widget _buildCourseImage() {
-    return Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(
-              image: CachedNetworkImageProvider(
-                "https://firebasestorage.googleapis.com/v0/b/folf-a2165.appspot.com/o/course-standin.jpg?alt=media&token=8f983d27-eb38-4df3-9887-cc07ff9d3df1",
-              ),
-              fit: BoxFit.cover,
-            ),
-            color: Colors.greenAccent,
-            borderRadius: BorderRadius.only(
-                topLeft:
-                    const Radius.circular(4), // 4 because card uses radius 4
-                topRight: const Radius.circular(4))),
-        height: 125,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[HeartButton(), _courseTitle()],
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-        ));
-  }
-
   Widget _courseTitle() {
-    return Expanded(
-      child: Align(
-        alignment: FractionalOffset.bottomLeft,
-        child: Container(
-          margin: EdgeInsets.all(5),
-          child: Text(
-            "Guðmundarlundur",
-            style: TextStyle(
-                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-          ),
+    return Positioned(
+      bottom: 5,
+      left: 5,
+      child: Text(
+        course.name,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
@@ -83,7 +68,7 @@ class Course extends StatelessWidget {
     return Row(
       children: <Widget>[
         Container(
-            margin: EdgeInsets.only(left: 5), child: StarDisplay(value: 5)),
+            margin: EdgeInsets.only(left: 5), child: StarDisplay(value: course.rating)),
         VerticalDivider()
       ],
     );
@@ -92,7 +77,7 @@ class Course extends StatelessWidget {
   Widget _basketsInfo() {
     return Row(
       children: <Widget>[
-        Container(child: Text("9 holur")),
+        Container(child: Text(course.holes.toString() + " holur")),
         Icon(MyIcons.basket),
         VerticalDivider(
           width: 0,
@@ -104,7 +89,7 @@ class Course extends StatelessWidget {
   Widget _distanceInfo() {
     return Row(
       children: <Widget>[
-        Container(padding: EdgeInsets.only(right: 5), child: Text("24 km")),
+        Container(padding: EdgeInsets.only(right: 5), child: Text("--")),
         Container(
             padding: EdgeInsets.only(right: 5), child: Icon(LineIcons.car))
       ],

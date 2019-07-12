@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:folf/constants/myColors.dart';
+import 'package:folf/models/courseModel.dart';
 
 import 'BodySelectCourse.dart';
 import 'bodyDetails/bodyDetails.dart';
 import 'headDetails.dart';
 
-class CourseDetailPage extends StatefulWidget {
+class CourseDetailPage extends StatefulWidget {  
+  final CourseModel course;
+  CourseDetailPage({this.course});
+
   @override
-  _CourseDetailPageState createState() => _CourseDetailPageState();
+  _CourseDetailPageState createState() => _CourseDetailPageState(course);
 }
 
 class _CourseDetailPageState extends State<CourseDetailPage>
     with TickerProviderStateMixin {
+
   AnimationController _controller;
   Animation _animation;
   int startGameButtonHeight;
   Widget widg = BodyDetails();
+
+  final course;
+  _CourseDetailPageState(this.course);
 
   @override
   void initState() {
@@ -64,7 +72,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
             body: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-                  HeadDetails(),
+                  HeadDetails(course: course,),
                   SizedBox(height: 5.0),
                   AnimatedBuilder(
                     animation: _controller,

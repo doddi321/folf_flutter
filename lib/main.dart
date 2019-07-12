@@ -19,7 +19,6 @@ class FolfApp extends StatelessWidget {
         '/': (BuildContext context) => SignInPage(),
         '/signup': (BuildContext context) => SignUpPage(),
         '/courses': (BuildContext context) => CoursesPage(),
-        '/courseDetails': (BuildContext context) => CourseDetailPage(),
       },
     );
   }
