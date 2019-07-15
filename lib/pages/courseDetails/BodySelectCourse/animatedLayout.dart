@@ -10,19 +10,24 @@ class AnimatedLayout extends AnimatedWidget {
 
   static double layoutHeight = 70;
 
-  AnimatedLayout({Key key, Animation<double> animation, this.layout, this.selected, this.offsetNr})
+  AnimatedLayout(
+      {Key key,
+      Animation<double> animation,
+      this.layout,
+      this.selected,
+      this.offsetNr})
       : super(key: key, listenable: animation);
 
   @override
   Widget build(BuildContext context) {
     final Animation<double> animation = listenable;
-    Offset offset = selected ? Offset(0, offsetNr * animation.value) : Offset(offsetNr * animation.value, 0);
+    Offset offset = selected
+        ? Offset(0, offsetNr * animation.value)
+        : Offset(offsetNr * animation.value, 0);
     return Transform.translate(offset: offset, child: _course(layout));
-    
-    
   }
 
-    Widget _course(dynamic layout) {
+  Widget _course(dynamic layout) {
     String difficultyText;
     Color difficultyColor;
 
@@ -42,57 +47,57 @@ class AnimatedLayout extends AnimatedWidget {
     }
 
     return Container(
-      height: layoutHeight,
-      color: Colors.white,
-      padding: EdgeInsets.only(left: 10, top: 10),
-      margin: EdgeInsets.only(bottom: 1),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Icon(
-                Icons.flag,
-                color: difficultyColor,
-                size: 20,
-              ),
-              SizedBox(
-                width: 5,
-              ),
-              Text(
-                difficultyText,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          Container(
-            height: 30,
-            child: Row(
+        height: layoutHeight,
+        color: Colors.white,
+        padding: EdgeInsets.only(left: 10, top: 10),
+        margin: EdgeInsets.only(bottom: 1),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Row(
               children: <Widget>[
-                _iconInfo('baskets', layout["holes"].toString()),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
-                  child: VerticalDivider(
-                    color: MyColors.textGrey,
+                Icon(
+                  Icons.flag,
+                  color: difficultyColor,
+                  size: 20,
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  difficultyText,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                _iconInfo('par', layout["par"].toString()),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
-                  child: VerticalDivider(
-                    color: MyColors.textGrey,
-                  ),
-                ),
-                _iconInfo('length', layout["length"].toString())
               ],
             ),
-          )
-        ],
-      ),
-    );
+            Container(
+              height: 30,
+              child: Row(
+                children: <Widget>[
+                  _iconInfo('baskets', layout["holes"].toString()),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                    child: VerticalDivider(
+                      color: MyColors.textGrey,
+                    ),
+                  ),
+                  _iconInfo('par', layout["par"].toString()),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                    child: VerticalDivider(
+                      color: MyColors.textGrey,
+                    ),
+                  ),
+                  _iconInfo('length', layout["length"].toString())
+                ],
+              ),
+            )
+          ],
+        ),
+      );
   }
 
   Widget _iconInfo(String info, String data) {

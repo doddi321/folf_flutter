@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:folf/models/courseModel.dart';
 import 'package:folf/pages/courseDetails/BodySelectCourse/animatedLayout.dart';
+import 'package:folf/pages/courseDetails/bodySelectPlayers/BodySelectPlayers.dart';
 
 class BodySelectCourse extends StatefulWidget {
   final CourseModel course;
@@ -66,10 +67,7 @@ class _BodySelectCourseState extends State<BodySelectCourse>
               builder: (BuildContext context, Widget child) {
                 return Transform.translate(
                     offset: Offset(width*(_removeAnimation.value+1), -AnimatedLayout.layoutHeight*(course.layouts.length-1) - 36),
-                    child: Container(
-                      height: 100,
-                      color: Colors.blue,
-                    ));
+                    child: BodySelectPlayers());
               })
         ],
       ),

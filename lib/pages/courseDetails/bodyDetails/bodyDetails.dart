@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:folf/constants/myColors.dart';
 import 'package:folf/pages/courseDetails/bodyDetails/expandableTextTile.dart';
 import 'package:folf/pages/courseDetails/bodyDetails/ratingDetails.dart';
 import 'package:folf/pages/courseDetails/bodyDetails/ringInfo.dart';
@@ -32,7 +33,7 @@ class BodyDetails extends StatelessWidget {
               children: <Widget>[
                 RingInfo('baskets', '9 holur'),
                 Container(
-                    margin: EdgeInsets.only(left: 15, right: 15),
+                    margin: EdgeInsets.only(left: 25, right: 22),
                     child: RingInfo('courses', '3 brautir')),
                 RingInfo('100', 'oft spilaður')
               ],
@@ -43,7 +44,7 @@ class BodyDetails extends StatelessWidget {
               padding: EdgeInsets.only(left: 20, right: 20),
               height: 50,
               child: RaisedButton(
-                color: Color(0xff78A9F3),
+                color: MyColors.lighBlue,
                 onPressed: () {},
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

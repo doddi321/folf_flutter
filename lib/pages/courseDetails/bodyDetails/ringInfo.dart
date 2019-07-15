@@ -15,13 +15,13 @@ class RingInfo extends StatelessWidget {
     if (info == 'baskets') {
       infoIcon = Icon(
         MyIcons.basket,
-        size: 64,
+        size: 54,
         color: MyColors.courseDetailOrange,
       );
     } else if (info == 'courses') {
       infoIcon = Icon(
         MyIcons.course,
-        size: 48,
+        size: 38,
         color: MyColors.courseDetailOrange,
       );
     } else {
@@ -29,7 +29,7 @@ class RingInfo extends StatelessWidget {
         alignment: Alignment.center,
         child: Text(
           info,
-          style: TextStyle(color: MyColors.courseDetailOrange, fontSize: 28),
+          style: TextStyle(color: MyColors.courseDetailOrange, fontSize: 26),
         ),
       );
     }
@@ -42,7 +42,7 @@ class RingInfo extends StatelessWidget {
                 color: Colors.white,
                 border:
                     Border.all(color: MyColors.courseDetailOrange, width: 2)),
-            child: Container(height: 70, width: 70, child: infoIcon)),
+            child: Container(height: 56, width: 56, child: infoIcon)),
         Text(
           text,
           style: TextStyle(color: MyColors.textGrey),
