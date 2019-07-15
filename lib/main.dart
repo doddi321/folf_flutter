@@ -11,6 +11,7 @@ class FolfApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+          fontFamily: "roboto",
           brightness: Brightness.light,
           primaryColor: Color(0xFF2CA58D),
           accentColor: Color(0xFFFF9B42)),

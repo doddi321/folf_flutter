@@ -3,38 +3,30 @@ import 'package:folf/constants/myColors.dart';
 import 'package:folf/constants/myIcons.dart';
 import 'package:line_icons/line_icons.dart';
 
-class BodySelectCourse extends StatelessWidget {
+class AnimatedLayout extends AnimatedWidget {
+  final dynamic layout;
+  final bool selected;
+  final double offsetNr;
+
+  static double layoutHeight = 70;
+
+  AnimatedLayout({Key key, Animation<double> animation, this.layout, this.selected, this.offsetNr})
+      : super(key: key, listenable: animation);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 20, bottom: 10, left: 10),
-            child: Text(
-              "Veldu braut",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-          ),
-          _buildCourses(),  
-        ],
-      ),
-    );
+    final Animation<double> animation = listenable;
+    Offset offset = selected ? Offset(0, offsetNr * animation.value) : Offset(offsetNr * animation.value, 0);
+    return Transform.translate(offset: offset, child: _course(layout));
+    
+    
   }
 
-  Widget _buildCourses() {
-    List<Widget> courses = List.generate(3, (index) {
-      return _course(index);
-    });
-    return Column(children: courses);
-  }
-
-  Widget _course(int difficulty) {
+    Widget _course(dynamic layout) {
     String difficultyText;
     Color difficultyColor;
 
-    switch (difficulty) {
+    switch (layout["difficulty"]) {
       case 0:
         difficultyText = "Auðvelt";
         difficultyColor = Colors.greenAccent;
@@ -50,6 +42,7 @@ class BodySelectCourse extends StatelessWidget {
     }
 
     return Container(
+      height: layoutHeight,
       color: Colors.white,
       padding: EdgeInsets.only(left: 10, top: 10),
       margin: EdgeInsets.only(bottom: 1),
@@ -58,11 +51,20 @@ class BodySelectCourse extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Icon(Icons.flag, color: difficultyColor,),
-              SizedBox(width: 5,),
+              Icon(
+                Icons.flag,
+                color: difficultyColor,
+                size: 20,
+              ),
+              SizedBox(
+                width: 5,
+              ),
               Text(
                 difficultyText,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, ),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -70,21 +72,21 @@ class BodySelectCourse extends StatelessWidget {
             height: 30,
             child: Row(
               children: <Widget>[
-                _iconInfo('baskets', '10'),
+                _iconInfo('baskets', layout["holes"].toString()),
                 Padding(
                   padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
                   child: VerticalDivider(
                     color: MyColors.textGrey,
                   ),
                 ),
-                _iconInfo('par', '30'),
+                _iconInfo('par', layout["par"].toString()),
                 Padding(
                   padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
                   child: VerticalDivider(
                     color: MyColors.textGrey,
                   ),
                 ),
-                _iconInfo('length', '678')
+                _iconInfo('length', layout["length"].toString())
               ],
             ),
           )

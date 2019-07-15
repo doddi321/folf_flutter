@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:folf/constants/myColors.dart';
 import 'package:folf/models/courseModel.dart';
 
-import 'BodySelectCourse.dart';
+import 'BodySelectCourse/BodySelectCourse.dart';
 import 'bodyDetails/bodyDetails.dart';
 import 'headDetails.dart';
 
@@ -44,7 +44,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
       _animation.removeStatusListener(handler);
       _controller.reset();
       startGameButtonHeight = 0;
-      widg = BodySelectCourse();
+      widg = BodySelectCourse(course: course,);
       _animation = Tween(begin: 1.0, end: 0.0).animate(CurvedAnimation(
         parent: _controller,
         curve: Curves.fastOutSlowIn,

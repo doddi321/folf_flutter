@@ -11,7 +11,7 @@ class CourseModel {
   String courseMap;
   int rating;
   int oftenPlayed;
-  int layouts;
+  List<dynamic> layouts;
   String description;
   List<dynamic> reviews;
   GeoPoint location;

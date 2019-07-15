@@ -43,7 +43,7 @@ class BodyDetails extends StatelessWidget {
               padding: EdgeInsets.only(left: 20, right: 20),
               height: 50,
               child: RaisedButton(
-                color: Colors.blue,
+                color: Color(0xff78A9F3),
                 onPressed: () {},
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
