@@ -5,16 +5,18 @@ import 'package:folf/pages/courseDetails/bodySelectPlayers/BodySelectPlayers.dar
 
 class BodySelectCourse extends StatefulWidget {
   final CourseModel course;
-  BodySelectCourse({@required this.course});
+  final Function setSelectingPlayers;
+  BodySelectCourse({@required this.course, @required this.setSelectingPlayers});
 
   @override
-  _BodySelectCourseState createState() => _BodySelectCourseState(course);
+  _BodySelectCourseState createState() => _BodySelectCourseState(course, setSelectingPlayers);
 }
 
 class _BodySelectCourseState extends State<BodySelectCourse>
     with TickerProviderStateMixin {
   CourseModel course;
-  _BodySelectCourseState(this.course);
+  Function setSelectingPlayers;
+  _BodySelectCourseState(this.course, this.setSelectingPlayers);
 
   AnimationController _controller;
   Animation _removeAnimation;
@@ -83,6 +85,7 @@ class _BodySelectCourseState extends State<BodySelectCourse>
             onTap: () {
               setState(() {
                 selected.replaceRange(index, index, [true]);
+                setSelectingPlayers(true);
               });
               _controller.forward();
             },

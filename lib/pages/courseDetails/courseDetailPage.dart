@@ -6,7 +6,7 @@ import 'BodySelectCourse/BodySelectCourse.dart';
 import 'bodyDetails/bodyDetails.dart';
 import 'headDetails.dart';
 
-class CourseDetailPage extends StatefulWidget {  
+class CourseDetailPage extends StatefulWidget {
   final CourseModel course;
   CourseDetailPage({this.course});
 
@@ -16,11 +16,14 @@ class CourseDetailPage extends StatefulWidget {
 
 class _CourseDetailPageState extends State<CourseDetailPage>
     with TickerProviderStateMixin {
+  AnimationController _controllerDetailToSelectLayout;
+  Animation _animDetailToSelectLayout;
 
-  AnimationController _controller;
-  Animation _animation;
+  AnimationController _controllerSelectPlayerButton;
+  Animation _animSelectPlayerButton;
+
   int startGameButtonHeight;
-  Widget widg = BodyDetails();
+  bool selectingPlayers = false;
 
   final course;
   _CourseDetailPageState(this.course);
@@ -29,34 +32,38 @@ class _CourseDetailPageState extends State<CourseDetailPage>
   void initState() {
     super.initState();
     startGameButtonHeight = 60;
-    _controller =
+
+    // course detail page to select layout animation components
+    _controllerDetailToSelectLayout =
         AnimationController(vsync: this, duration: Duration(milliseconds: 200));
-
-    _animation = Tween(begin: 0.0, end: -1.0).animate(CurvedAnimation(
-      parent: _controller,
+    _animDetailToSelectLayout =
+        Tween(begin: 0.0, end: -1.0).animate(CurvedAnimation(
+      parent: _controllerDetailToSelectLayout,
       curve: Curves.fastOutSlowIn,
-    ))
-      ..addStatusListener(handler);
-  }
+    ));
 
-  void handler(status) {
-    if (status == AnimationStatus.completed) {
-      _animation.removeStatusListener(handler);
-      _controller.reset();
-      startGameButtonHeight = 0;
-      widg = BodySelectCourse(course: course,);
-      _animation = Tween(begin: 1.0, end: 0.0).animate(CurvedAnimation(
-        parent: _controller,
-        curve: Curves.fastOutSlowIn,
-      ));
-      _controller.forward();
-    }
+    // course select players button animation
+    _controllerSelectPlayerButton =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 200));
+    _animSelectPlayerButton =
+        Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+      parent: _controllerDetailToSelectLayout,
+      curve: Curves.fastOutSlowIn,
+    ));
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controllerDetailToSelectLayout.dispose();
+    _controllerSelectPlayerButton.dispose();
     super.dispose();
+  }
+
+  void setSelectingPlayers(bool selectingPlayers) {
+    setState(() {
+      this.selectingPlayers = selectingPlayers;
+      _controllerSelectPlayerButton.forward();
+    });
   }
 
   @override
@@ -64,6 +71,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
     final double width = MediaQuery.of(context).size.width;
     return Container(
         child: Scaffold(
+            floatingActionButton: _buildSelectPlayersButton(),
             bottomSheet: _buildStartGameButton(),
             appBar: AppBar(
               title: Text('Guðmundarlundur'),
@@ -72,18 +80,40 @@ class _CourseDetailPageState extends State<CourseDetailPage>
             body: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-                  HeadDetails(course: course,),
+                  HeadDetails(
+                    course: course,
+                  ),
                   SizedBox(height: 5.0),
-                  AnimatedBuilder(
-                    animation: _controller,
-                    builder: (BuildContext context, Widget child) {
-                      return Transform(
-                        child: widg,
-                        transform: Matrix4.translationValues(
-                            _animation.value * width, 0.0, 0.0),
-                      );
-                    },
-                  )
+                  Stack(
+                    children: <Widget>[
+                      AnimatedBuilder(
+                        animation: _controllerDetailToSelectLayout,
+                        builder: (BuildContext context, Widget child) {
+                          return Transform(
+                            child: BodyDetails(),
+                            transform: Matrix4.translationValues(
+                                _animDetailToSelectLayout.value * width,
+                                0.0,
+                                0.0),
+                          );
+                        },
+                      ),
+                      AnimatedBuilder(
+                        animation: _controllerDetailToSelectLayout,
+                        builder: (BuildContext context, Widget child) {
+                          return Transform(
+                            child: BodySelectCourse(
+                                course: course,
+                                setSelectingPlayers: setSelectingPlayers),
+                            transform: Matrix4.translationValues(
+                                (_animDetailToSelectLayout.value + 1) * width,
+                                0.0,
+                                0.0),
+                          );
+                        },
+                      )
+                    ],
+                  ),
                 ],
               ),
             )));
@@ -91,16 +121,17 @@ class _CourseDetailPageState extends State<CourseDetailPage>
 
   Widget _buildStartGameButton() {
     return AnimatedBuilder(
-        animation: _controller,
+        animation: _controllerDetailToSelectLayout,
         builder: (BuildContext context, Widget child) {
           return Material(
             color: MyColors.courseDetailOrange,
             child: InkWell(
               onTap: () {
-                _controller.forward();
+                _controllerDetailToSelectLayout.forward();
               },
               child: Container(
-                height: startGameButtonHeight * (_animation.value + 1),
+                height: startGameButtonHeight *
+                    (_animDetailToSelectLayout.value + 1),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -114,5 +145,24 @@ class _CourseDetailPageState extends State<CourseDetailPage>
             ),
           );
         });
+  }
+
+  Widget _buildSelectPlayersButton() {
+    return Visibility(
+      visible: selectingPlayers,
+          child: AnimatedBuilder(
+          animation: _controllerSelectPlayerButton,
+          builder: (BuildContext context, Widget child) {
+            return FloatingActionButton(
+              onPressed: () {},
+              child: Icon(
+                Icons.check,
+                color: Colors.white,
+              ),
+              backgroundColor: MyColors.lighBlue,
+              
+            );
+          }),
+    );
   }
 }
