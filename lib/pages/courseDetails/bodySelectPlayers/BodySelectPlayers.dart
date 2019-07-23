@@ -11,6 +11,10 @@ class _BodySelectPlayersState extends State<BodySelectPlayers> {
 
   List<int> selectedPlayers = [];
 
+  List<int> getSelectedPlayers() {
+    return selectedPlayers;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -74,8 +78,13 @@ class _BodySelectPlayersState extends State<BodySelectPlayers> {
   }
 
   Widget _buildPlayerList() {
-    List<Widget> playerList = List<Widget>.generate(5, (int index) {
-      return Container(margin: EdgeInsets.only(bottom: 2), child: _player(index));
+
+    List<dynamic> players = List<dynamic>.generate(5, (index) {
+      return {"name": "doddi" + index.toString()};
+    });
+
+    List<Widget> playerList = List<Widget>.generate(players.length, (int index) {
+      return Container(margin: EdgeInsets.only(bottom: 2), child: _player(index, players[index]));
     });
     return Container(
       margin: EdgeInsets.only(left: 50, right: 50),
@@ -85,7 +94,7 @@ class _BodySelectPlayersState extends State<BodySelectPlayers> {
     );
   }
 
-  Widget _player(int index) {
+  Widget _player(int index, dynamic player) {
     return Material(
       color: selectedPlayers.contains(index) ? Colors.grey[100] : Colors.white,
       child: InkWell(
@@ -113,7 +122,7 @@ class _BodySelectPlayersState extends State<BodySelectPlayers> {
             ),
             Expanded(
               child: Text(
-                "Doddi",
+                player["name"],
                 style: TextStyle(fontSize: 20),
               ),
             ),

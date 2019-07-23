@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:folf/models/review.dart';
 
 // todo: kannski laga dymnamic dæmið hér betur þegar líður á þetta
 

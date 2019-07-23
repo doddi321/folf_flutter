@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:line_icons/line_icons.dart';
 
 import 'heartButton.dart';
 

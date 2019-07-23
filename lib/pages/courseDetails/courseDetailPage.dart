@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:folf/constants/myColors.dart';
 import 'package:folf/models/courseModel.dart';
+import 'package:folf/pages/ScoreBoard/ScoreBoardPage.dart';
 
 import 'BodySelectCourse/BodySelectCourse.dart';
 import 'bodyDetails/bodyDetails.dart';
@@ -20,7 +21,6 @@ class _CourseDetailPageState extends State<CourseDetailPage>
   Animation _animDetailToSelectLayout;
 
   AnimationController _controllerSelectPlayerButton;
-  Animation _animSelectPlayerButton;
 
   int startGameButtonHeight;
   bool selectingPlayers = false;
@@ -45,11 +45,6 @@ class _CourseDetailPageState extends State<CourseDetailPage>
     // course select players button animation
     _controllerSelectPlayerButton =
         AnimationController(vsync: this, duration: Duration(milliseconds: 200));
-    _animSelectPlayerButton =
-        Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-      parent: _controllerDetailToSelectLayout,
-      curve: Curves.fastOutSlowIn,
-    ));
   }
 
   @override
@@ -150,19 +145,22 @@ class _CourseDetailPageState extends State<CourseDetailPage>
   Widget _buildSelectPlayersButton() {
     return Visibility(
       visible: selectingPlayers,
-          child: AnimatedBuilder(
-          animation: _controllerSelectPlayerButton,
-          builder: (BuildContext context, Widget child) {
-            return FloatingActionButton(
-              onPressed: () {},
+          child: FloatingActionButton(
+              onPressed: () {
+                 Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ScoreBoardPage(),
+                ),
+              );
+              },
               child: Icon(
                 Icons.check,
                 color: Colors.white,
               ),
               backgroundColor: MyColors.lighBlue,
               
-            );
-          }),
+            ),
     );
   }
 }
