@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:folf/models/courseModel.dart';
 import 'package:folf/pages/courseDetails/courseDetailPage.dart';
 import 'package:folf/pages/courses/course.dart';
+import 'package:folf/providers/selectedPlayersProvider.dart';
+import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CoursesPage extends StatefulWidget {
@@ -53,7 +55,10 @@ class _CoursesPageState extends State<CoursesPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CourseDetailPage(course: courses[index]),
+                  builder: (context) =>
+                      ChangeNotifierProvider<SelectedPlayersProvider>(
+                          builder: (_) => SelectedPlayersProvider(),
+                          child: CourseDetailPage(course: courses[index])),
                 ),
               );
             },

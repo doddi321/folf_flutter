@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:folf/pages/courseDetails/courseDetailPage.dart';
 import 'package:folf/pages/courses/coursesPage.dart';
 import 'package:folf/pages/signin/signInPage.dart';
 import 'package:folf/pages/signup/signUpPage.dart';
@@ -19,7 +18,7 @@ class FolfApp extends StatelessWidget {
       routes: {
         '/': (BuildContext context) => SignInPage(),
         '/signup': (BuildContext context) => SignUpPage(),
-        '/courses': (BuildContext context) => CoursesPage(),
+        '/courses': (BuildContext context) => CoursesPage()
       },
     );
   }

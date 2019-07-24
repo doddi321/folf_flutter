@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:folf/constants/myColors.dart';
 import 'package:folf/models/courseModel.dart';
 import 'package:folf/pages/ScoreBoard/ScoreBoardPage.dart';
+import 'package:folf/providers/selectedPlayersProvider.dart';
+import 'package:provider/provider.dart';
 
 import 'BodySelectCourse/BodySelectCourse.dart';
 import 'bodyDetails/bodyDetails.dart';
@@ -17,6 +19,7 @@ class CourseDetailPage extends StatefulWidget {
 
 class _CourseDetailPageState extends State<CourseDetailPage>
     with TickerProviderStateMixin {
+
   AnimationController _controllerDetailToSelectLayout;
   Animation _animDetailToSelectLayout;
 
@@ -27,6 +30,8 @@ class _CourseDetailPageState extends State<CourseDetailPage>
 
   final course;
   _CourseDetailPageState(this.course);
+
+  SelectedPlayersProvider selectedPlayers;
 
   @override
   void initState() {
@@ -63,6 +68,9 @@ class _CourseDetailPageState extends State<CourseDetailPage>
 
   @override
   Widget build(BuildContext context) {
+
+    selectedPlayers = Provider.of<SelectedPlayersProvider>(context);
+
     final double width = MediaQuery.of(context).size.width;
     return Container(
         child: Scaffold(
@@ -150,7 +158,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
                  Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ScoreBoardPage(),
+                  builder: (context) => ScoreBoardPage(players: selectedPlayers.players),
                 ),
               );
               },

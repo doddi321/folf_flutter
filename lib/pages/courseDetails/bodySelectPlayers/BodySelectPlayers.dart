@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:folf/constants/myColors.dart';
+import 'package:folf/models/selectedPlayerModel.dart';
+import 'package:folf/providers/selectedPlayersProvider.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:provider/provider.dart';
 
 class BodySelectPlayers extends StatefulWidget {
   @override
@@ -8,15 +11,12 @@ class BodySelectPlayers extends StatefulWidget {
 }
 
 class _BodySelectPlayersState extends State<BodySelectPlayers> {
-
-  List<int> selectedPlayers = [];
-
-  List<int> getSelectedPlayers() {
-    return selectedPlayers;
-  }
+  SelectedPlayersProvider selectedPlayers;
 
   @override
   Widget build(BuildContext context) {
+    selectedPlayers = Provider.of<SelectedPlayersProvider>(context);
+
     return Column(
       children: <Widget>[
         Row(
@@ -78,13 +78,17 @@ class _BodySelectPlayersState extends State<BodySelectPlayers> {
   }
 
   Widget _buildPlayerList() {
+    List<SelectedPlayerModel> allplayerOptions = [];
+    for (int i = 0; i < 5; i++) {
+      allplayerOptions.add(SelectedPlayerModel(
+          name: "doddi" + i.toString(), userId: i.toString(), imageUrl: ""));
+    }
 
-    List<dynamic> players = List<dynamic>.generate(5, (index) {
-      return {"name": "doddi" + index.toString()};
-    });
-
-    List<Widget> playerList = List<Widget>.generate(players.length, (int index) {
-      return Container(margin: EdgeInsets.only(bottom: 2), child: _player(index, players[index]));
+    List<Widget> playerList =
+        List<Widget>.generate(allplayerOptions.length, (int index) {
+      return Container(
+          margin: EdgeInsets.only(bottom: 2),
+          child: _player(index, allplayerOptions[index]));
     });
     return Container(
       margin: EdgeInsets.only(left: 50, right: 50),
@@ -94,19 +98,18 @@ class _BodySelectPlayersState extends State<BodySelectPlayers> {
     );
   }
 
-  Widget _player(int index, dynamic player) {
+  Widget _player(int index, SelectedPlayerModel player) {
     return Material(
-      color: selectedPlayers.contains(index) ? Colors.grey[100] : Colors.white,
+      color: selectedPlayers.contains(player) 
+          ? Colors.grey[100]
+          : Colors.white,
       child: InkWell(
         onTap: () {
-          setState(() {
-            if (selectedPlayers.contains(index)) {
-              selectedPlayers.remove(index);
+            if (selectedPlayers.contains(player)) {
+              selectedPlayers.removePlayer(player);
+            } else {
+              selectedPlayers.addPlayer(player);
             }
-            else {
-              selectedPlayers.add(index);
-            }
-          });
         },
         child: Container(
           padding: EdgeInsets.only(top: 8, bottom: 8, left: 10),
@@ -122,12 +125,12 @@ class _BodySelectPlayersState extends State<BodySelectPlayers> {
             ),
             Expanded(
               child: Text(
-                player["name"],
+                player.name,
                 style: TextStyle(fontSize: 20),
               ),
             ),
             Visibility(
-              visible: selectedPlayers.contains(index),
+              visible: selectedPlayers.contains(player),
               child: Padding(
                 padding: EdgeInsets.only(right: 10),
                 child: Icon(
