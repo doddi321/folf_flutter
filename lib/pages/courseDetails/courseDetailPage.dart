@@ -19,7 +19,6 @@ class CourseDetailPage extends StatefulWidget {
 
 class _CourseDetailPageState extends State<CourseDetailPage>
     with TickerProviderStateMixin {
-
   AnimationController _controllerDetailToSelectLayout;
   Animation _animDetailToSelectLayout;
 
@@ -44,7 +43,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
     _animDetailToSelectLayout =
         Tween(begin: 0.0, end: -1.0).animate(CurvedAnimation(
       parent: _controllerDetailToSelectLayout,
-      curve: Curves.fastOutSlowIn,
+      curve: Curves.fastOutSlowIn,  
     ));
 
     // course select players button animation
@@ -68,7 +67,6 @@ class _CourseDetailPageState extends State<CourseDetailPage>
 
   @override
   Widget build(BuildContext context) {
-
     selectedPlayers = Provider.of<SelectedPlayersProvider>(context);
 
     final double width = MediaQuery.of(context).size.width;
@@ -153,22 +151,21 @@ class _CourseDetailPageState extends State<CourseDetailPage>
   Widget _buildSelectPlayersButton() {
     return Visibility(
       visible: selectingPlayers,
-          child: FloatingActionButton(
-              onPressed: () {
-                 Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ScoreBoardPage(players: selectedPlayers.players),
-                ),
-              );
-              },
-              child: Icon(
-                Icons.check,
-                color: Colors.white,
-              ),
-              backgroundColor: MyColors.lighBlue,
-              
+      child: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ScoreBoardPage(players: selectedPlayers.players, course: course)
             ),
+          );
+        },
+        child: Icon(
+          Icons.check,
+          color: Colors.white,
+        ),
+        backgroundColor: MyColors.lighBlue,
+      ),
     );
   }
 }

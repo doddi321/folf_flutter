@@ -5,6 +5,8 @@ import 'package:folf/providers/selectedPlayersProvider.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 
+import 'addPlayersDialogBox.dart';
+
 class BodySelectPlayers extends StatefulWidget {
   @override
   _BodySelectPlayersState createState() => _BodySelectPlayersState();
@@ -26,14 +28,10 @@ class _BodySelectPlayersState extends State<BodySelectPlayers> {
                 margin: EdgeInsets.only(left: 39), child: _buildSwitchButton()),
             Container(
                 margin: EdgeInsets.only(left: 15),
-                child: Icon(
-                  Icons.person_add,
-                  color: MyColors.lighBlue,
-                  size: 28,
-                ))
+                child: _buildPlayerIconButton())
           ],
         ),
-        _buildPlayerList()
+        _buildPlayerList(),
       ],
     );
   }
@@ -78,17 +76,11 @@ class _BodySelectPlayersState extends State<BodySelectPlayers> {
   }
 
   Widget _buildPlayerList() {
-    List<SelectedPlayerModel> allplayerOptions = [];
-    for (int i = 0; i < 5; i++) {
-      allplayerOptions.add(SelectedPlayerModel(
-          name: "doddi" + i.toString(), userId: i.toString(), imageUrl: ""));
-    }
-
     List<Widget> playerList =
-        List<Widget>.generate(allplayerOptions.length, (int index) {
+        List<Widget>.generate(selectedPlayers.players.length, (int index) {
       return Container(
           margin: EdgeInsets.only(bottom: 2),
-          child: _player(index, allplayerOptions[index]));
+          child: _player(selectedPlayers.players[index]));
     });
     return Container(
       margin: EdgeInsets.only(left: 50, right: 50),
@@ -98,18 +90,12 @@ class _BodySelectPlayersState extends State<BodySelectPlayers> {
     );
   }
 
-  Widget _player(int index, SelectedPlayerModel player) {
+  Widget _player(SelectedPlayerModel player) {
     return Material(
-      color: selectedPlayers.contains(player) 
-          ? Colors.grey[100]
-          : Colors.white,
+      color: player.isSelected ? Colors.grey[100] : Colors.white,
       child: InkWell(
         onTap: () {
-            if (selectedPlayers.contains(player)) {
-              selectedPlayers.removePlayer(player);
-            } else {
-              selectedPlayers.addPlayer(player);
-            }
+          selectedPlayers.selectOrUnselectPlayer(player);
         },
         child: Container(
           padding: EdgeInsets.only(top: 8, bottom: 8, left: 10),
@@ -130,7 +116,7 @@ class _BodySelectPlayersState extends State<BodySelectPlayers> {
               ),
             ),
             Visibility(
-              visible: selectedPlayers.contains(player),
+              visible: player.isSelected,
               child: Padding(
                 padding: EdgeInsets.only(right: 10),
                 child: Icon(
@@ -141,6 +127,23 @@ class _BodySelectPlayersState extends State<BodySelectPlayers> {
             )
           ]),
         ),
+      ),
+    );
+  }
+
+  Widget _buildPlayerIconButton() {
+    return GestureDetector(
+      onTap: () {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AddPlayerDialogBox(addPlayer: selectedPlayers.addPlayer);
+            });
+      },
+      child: Icon(
+        Icons.person_add,
+        color: MyColors.lighBlue,
+        size: 28,
       ),
     );
   }

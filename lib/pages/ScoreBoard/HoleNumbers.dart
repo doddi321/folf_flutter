@@ -1,27 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:folf/providers/selectedHoleProvider.dart';
+import 'package:provider/provider.dart';
 
 class HoleNumbers extends StatefulWidget {
-  _HoleNumbersState createState() => _HoleNumbersState();
+  final holesAmount;
+  HoleNumbers({this.holesAmount});
+
+  _HoleNumbersState createState() => _HoleNumbersState(holesAmount);
 }
 
 class _HoleNumbersState extends State<HoleNumbers> {
-  int selected = 0;
+  int holesAmount;
 
+  _HoleNumbersState(this.holesAmount);
   @override
   Widget build(BuildContext context) {
+    SelectedHoleProvider selectedHoleProvider = Provider.of<SelectedHoleProvider>(context);
+
     return ListView.builder(
       scrollDirection: Axis.horizontal,
-      itemCount: 10,
+      itemCount: holesAmount,
       itemBuilder: (BuildContext context, int index) {
         return Row(children: <Widget>[
           InkWell(
             onTap: () {
               setState(() {
-                selected = index;
+                selectedHoleProvider.selectedHole = index;
               });
             },
             child: Container(
-              decoration: selected == index
+              decoration: selectedHoleProvider.selectedHole == index
                   ? BoxDecoration(
                       border: Border(
                           bottom: BorderSide(width: 5, color: Colors.black)))
