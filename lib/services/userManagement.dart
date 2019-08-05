@@ -34,7 +34,7 @@ class UserManagement {
         .then(_onStoreNewUserSuccess)
         .catchError(_onStoreNewUserError);
     
-    Navigator.popAndPushNamed(_context, "/courses");
+    Navigator.popAndPushNamed(_context, "/mainPage");
   }
   
   _onStoreNewUserSuccess(response) {

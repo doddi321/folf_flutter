@@ -3,8 +3,6 @@
 
 - ef email er tekið eða username, birta ehv texta
 
-- skoðaShared element transition
-
 - weather
 - conditions
 
@@ -14,3 +12,4 @@ APP IDEAS:
     - set spilið
     - set spilið + vekjaraklukka + eitthvað annað kannski
     - hátalarar linkaðir saman
+    - punch cards

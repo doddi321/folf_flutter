@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:folf/constants/myColors.dart';
+import 'package:folf/models/courseModel.dart';
 
 class ExpandableTextTile extends StatefulWidget {
-  _ExpandableTextTileState createState() => _ExpandableTextTileState();
+  final CourseModel course;
+  ExpandableTextTile({this.course});
+
+  _ExpandableTextTileState createState() => _ExpandableTextTileState(course);
 }
 
 class _ExpandableTextTileState extends State<ExpandableTextTile> {
+
+  CourseModel course;
+
+  _ExpandableTextTileState(this.course);
 
   bool isExpanded = false;
 
@@ -37,7 +45,7 @@ class _ExpandableTextTileState extends State<ExpandableTextTile> {
               Container(
                 padding: EdgeInsets.only(left: 15, right: 15, top: 5),
                 child: Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat bing bong is the ding dong of the isng song.",
+                  course.description,
                   style: TextStyle(fontSize: 14, color: MyColors.textGrey),
                   textAlign: TextAlign.justify,
                   maxLines: isExpanded ? 1000 : 4,

@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:folf/constants/myIcons.dart';
 import 'package:folf/models/courseModel.dart';
 import 'package:folf/pages/courseDetails/courseDetailPage.dart';
-import 'package:folf/pages/courses/course.dart';
+import 'package:folf/pages/MainPage/courses/course.dart';
 import 'package:folf/providers/selectedPlayersProvider.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -14,6 +16,7 @@ class CoursesPage extends StatefulWidget {
 class _CoursesPageState extends State<CoursesPage> {
   List<CourseModel> courses;
   bool isLoading;
+  int _bottomNavigationIndex;
 
   // todo: ætti ég að hafa þetta í sér file þúst ehv svona eins og service og kannski mapperinn þar líka?
   Future<List<DocumentSnapshot>> getCourseDocuments() async {
@@ -24,6 +27,7 @@ class _CoursesPageState extends State<CoursesPage> {
 
   @override
   void initState() {
+    _bottomNavigationIndex = 0;
     isLoading = true;
     super.initState();
     getCourseDocuments().then((snapshot) {
@@ -36,13 +40,7 @@ class _CoursesPageState extends State<CoursesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Scaffold(
-            appBar: AppBar(
-              title: Text('Courses'),
-            ),
-            backgroundColor: Color(0xFFF5F5F5),
-            body: isLoading ? _buildLoadingWidget() : _buildList()));
+    return isLoading ? _buildLoadingWidget() : _buildList();
   }
 
   Widget _buildList() {

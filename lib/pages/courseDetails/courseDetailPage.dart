@@ -27,7 +27,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
   int startGameButtonHeight;
   bool selectingPlayers = false;
 
-  final course;
+  final CourseModel course;
   _CourseDetailPageState(this.course);
 
   SelectedPlayersProvider selectedPlayers;
@@ -75,7 +75,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
             floatingActionButton: _buildSelectPlayersButton(),
             bottomSheet: _buildStartGameButton(),
             appBar: AppBar(
-              title: Text('Guðmundarlundur'),
+              title: Text(course.name),
             ),
             backgroundColor: Color(0xFFF5F5F5),
             body: SingleChildScrollView(
@@ -91,7 +91,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
                         animation: _controllerDetailToSelectLayout,
                         builder: (BuildContext context, Widget child) {
                           return Transform(
-                            child: BodyDetails(),
+                            child: BodyDetails(course: course),
                             transform: Matrix4.translationValues(
                                 _animDetailToSelectLayout.value * width,
                                 0.0,

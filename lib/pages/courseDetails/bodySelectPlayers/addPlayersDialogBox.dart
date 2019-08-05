@@ -32,17 +32,14 @@ class _AddPlayerDialogBoxState extends State<AddPlayerDialogBox> {
   Widget build(BuildContext context) {
     return AlertDialog(
       content: Container(
-        height: 190,
-        child: Column(
-          children: <Widget>[
-            inviteOrCreate(),
-            Divider(),
-            textButton("Close", true, true, () {
-              Navigator.pop(context, true);
-            })
-          ],
-        ),
+        height: 180,
+        child: inviteOrCreate(),
       ),
+      actions: <Widget>[
+        textButton("Close", true, true, () {
+          Navigator.pop(context, true);
+        })
+      ],
     );
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:folf/constants/myColors.dart';
 import 'package:folf/models/courseModel.dart';
+import 'package:folf/services/mapService.dart';
 import 'package:folf/widgets/courseImageContainer.dart';
 import 'package:folf/widgets/starDisplay.dart';
 import 'package:line_icons/line_icons.dart';
@@ -83,9 +84,15 @@ class HeadDetails extends StatelessWidget {
                     alignment: FractionalOffset.centerRight,
                     child: Container(
                         padding: EdgeInsets.only(right: 20),
-                        child: Image(
-                          image: AssetImage('assets/images/google-maps.png'),
-                          height: 48,
+                        child: InkWell(
+                          onTap: () {
+                            print("hello");
+                            MapUtils.openMap(64.122448269593, -21.750268936157);
+                          },
+                          child: Image(
+                            image: AssetImage('assets/images/google-maps.png'),
+                            height: 48,
+                          ),
                         ))))
           ],
         ),

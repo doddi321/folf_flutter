@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:folf/constants/myColors.dart';
 import 'package:folf/models/courseModel.dart';
+import 'package:folf/services/mapService.dart';
 import 'package:folf/widgets/courseImageContainer.dart';
 import 'package:folf/widgets/starDisplay.dart';
 import 'package:line_icons/line_icons.dart';
@@ -18,10 +19,10 @@ class HeadDetails extends StatelessWidget {
           CourseImageContainer(
             heroTag: course.cid,
             imageUrl: course.thumbnail,
-            leftCornerWidget: _imageNr(),
+            leftCornerWidget: /*_imageNr()*/ Container(),
             height: 150,
           ),
-          _buildLocationContainer()
+          _buildLocationContainer(context)
         ],
       ),
     );
@@ -54,7 +55,7 @@ class HeadDetails extends StatelessWidget {
     );
   }
 
-  _buildLocationContainer() {
+  _buildLocationContainer(BuildContext context) {
     return Container(
       color: Colors.white,
       child: Row(
@@ -81,9 +82,23 @@ class HeadDetails extends StatelessWidget {
                   alignment: FractionalOffset.centerRight,
                   child: Container(
                       padding: EdgeInsets.only(right: 20),
-                      child: Image(
-                        image: AssetImage('assets/images/google-maps.png'),
-                        height: 48,
+                      child: InkWell(
+                        onTap: () {
+                          if (course.coord == "") {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(title: Text("Sorry, there are no coordinates for this course."),);
+                                });
+                          } else {
+                            MapUtils.openMap(
+                                course.coord["lat"], course.coord["lon"]);
+                          }
+                        },
+                        child: Image(
+                          image: AssetImage('assets/images/google-maps.png'),
+                          height: 48,
+                        ),
                       ))))
         ],
       ),

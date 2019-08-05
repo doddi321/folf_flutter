@@ -31,9 +31,22 @@ class _BodySelectPlayersState extends State<BodySelectPlayers> {
                 child: _buildPlayerIconButton())
           ],
         ),
-        _buildPlayerList(),
+        selectedPlayers.players.length == 0
+            ? _buildNoPlayers()
+            : _buildPlayerList(),
       ],
     );
+  }
+
+  Widget _buildNoPlayers() {
+    return Container(
+        color: Colors.white,
+        padding: EdgeInsets.all(50),
+        height: 200,
+        child: Text(
+          "Add players",
+          style: TextStyle(fontSize: 24, color: MyColors.textGrey),
+        ));
   }
 
   Widget _buildSwitchButton() {

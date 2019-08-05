@@ -5,10 +5,7 @@ class SelectedPlayersProvider with ChangeNotifier {
   List<SelectedPlayerModel> players;
 
   SelectedPlayersProvider() {
-    players = List<SelectedPlayerModel>.generate(5, (int index) {
-      return SelectedPlayerModel(
-          name: "doddi" + index.toString(), userId: "", imageUrl: "");
-    });
+    players = [];
   }
 
   SelectedPlayersProvider.copyConstructor(List<SelectedPlayerModel> players) {
@@ -32,15 +29,5 @@ class SelectedPlayersProvider with ChangeNotifier {
       }
     }
     notifyListeners();
-  }
-
-  void incramentScore(int incrament, int playerIndex, int holeNr) {
-    if (incrament >= 0 ||
-        players[playerIndex].individualScores[holeNr] > 0) {
-      players[playerIndex].individualScores[holeNr] += incrament;
-
-      players[playerIndex].total += incrament;
-      notifyListeners();
-    }
   }
 }

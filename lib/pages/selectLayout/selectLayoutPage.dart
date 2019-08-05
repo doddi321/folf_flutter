@@ -20,7 +20,7 @@ class _SelectLayoutPageState extends State<SelectLayoutPage> {
     return Container(
         child: Scaffold(
             appBar: AppBar(
-              title: Text('Guðmundarlundur'),
+              title: Text(course.name),
             ),
             backgroundColor: Color(0xFFF5F5F5),
             body: SingleChildScrollView(

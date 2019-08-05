@@ -126,7 +126,7 @@ class _SigninFormState extends State<SigninForm> {
                 .signInWithEmailAndPassword(email: _email, password: _password)
                 .then((response) {
               clearErrorTexts();
-              Navigator.popAndPushNamed(context, "/courses");
+              Navigator.popAndPushNamed(context, "/mainPage");
             }).catchError((e) {
               clearErrorTexts();
               if (e.code == "ERROR_USER_NOT_FOUND") {
@@ -235,7 +235,7 @@ class _SigninFormState extends State<SigninForm> {
   Widget _useWithoutSigninpButton() {
     return InkWell(
       onTap: () {
-        Navigator.popAndPushNamed(context, "/courses");
+        Navigator.popAndPushNamed(context, "/mainPage");
       },
       child: Container(
         height: 50,

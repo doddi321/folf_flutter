@@ -1,0 +1,814 @@
+{
+    "courses": [
+        {
+            "name": "Gar\u00f0ab\u00e6r \u2013 V\u00edfilssta\u00f0at\u00fan",
+            "description": "Fyrsti v\u00f6llurinn \u00ed Gar\u00f0ab\u00e6r var settur upp sumari\u00f0 2018 en hann er staddur \u00e1 t\u00faninu fyrir framan V\u00edfilsta\u00f0i en \u00fear er fr\u00e1b\u00e6rt sv\u00e6\u00f0i fyrir frisb\u00edgolf. V\u00f6llurinn er me\u00f0 10 brautir og b\u00fd\u00f0ur upp \u00e1 mikla fj\u00f6lbreyttni enda strax or\u00f0inn mj\u00f6g vins\u00e6ll hj\u00e1 spilurum.",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/08/vi\u0301fil.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Hafnarfj\u00f6r\u00f0ur \u2013 V\u00ed\u00f0ista\u00f0at\u00fan",
+            "description": "Sumari\u00f0 2014 var settur upp 6 brauta v\u00f6llur \u00e1 \u00feessum skemmtilega sta\u00f0 \u00ed Hafnarfir\u00f0i. \u00c1 sumrin teygir tjaldsv\u00e6\u00f0i\u00f0 sig stundum inn \u00e1 st\u00f3ra t\u00fani\u00f0 og \u00fearf \u00fe\u00e1 a\u00f0 s\u00fdna tillitsemi \u00feegar spila\u00f0 er \u00e1 \u00fev\u00ed sv\u00e6\u00f0i.",
+            "holes": "6",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/IMG_7423-1024x768.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "K\u00f3pavogur \u2013 Dalvegur",
+            "description": "Vori\u00f0 2017 var settur upp fyrsti v\u00f6llurinn \u00ed K\u00f3pavogi en hann er \u00ed K\u00f3pavogsdalnum sem liggur vi\u00f0 hli\u00f0 Dalvegs. \u00deetta er skemmtilegur 10 brauta v\u00f6llur me\u00f0 tveimur teigum \u00e1 hverri braut en v\u00f6llurinn er strax or\u00f0inn einn af vins\u00e6lli v\u00f6llum landsins.",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/05/k\u00f3pavogur-1024x687.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "K\u00f3pavogur \u2013 Gu\u00f0mundarlundur",
+            "description": "\u00cd byrjun j\u00fal\u00ed 2018 var settur upp 10 brauta frisb\u00edgolfv\u00f6llur \u00ed Gu\u00f0mundarlundi \u00ed K\u00f3pavogi (r\u00e9tt vi\u00f0 K\u00f3rinn og hesth\u00fasahverfi\u00f0). V\u00f6llurinn er \u00ed s\u00e9rtaklega fallegu sk\u00f3glendi og brautirnar mj\u00f6g fj\u00f6lbreyttar en v\u00f6llurinn er s\u00e9rstaklega hanna\u00f0ur me\u00f0 byrjendur, fj\u00f6lskyldur og me\u00f0alspilara \u00ed huga. V\u00f6llurinn b\u00ed\u00f0ur l\u00edka upp \u00e1 t\u00e6knilega erfi\u00f0ar brautir fyrir lengra komna og \u00e6tti \u00fev\u00ed a\u00f0 henta flestum.",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/07/IMG_2522b-1024x768.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Mosfellsb\u00e6r \u2013 \u00c6vint\u00fdragar\u00f0urinn",
+            "description": "Vori\u00f0 2014 var opna\u00f0ur v\u00f6llur \u00e1 \u00feessum skemmtilega sta\u00f0 \u00fear sem fyrirhuga\u00f0 er a\u00f0 byggja upp sannkalla\u00f0 \u00e6vint\u00fdrasv\u00e6\u00f0i. V\u00f6llurinn b\u00fd\u00f0ur upp \u00e1 mish\u00e6\u00f0ir, gr\u00f3\u00f0ur og skemmtilega fj\u00f6lbreyttni. Tveir teigar eru \u00e1 vellinum, rau\u00f0ir og hv\u00edtir.",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/mos\u00f3.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Reykjav\u00edk \u2013 Fella- og H\u00f3lahverfi \u2013\u00a0Brei\u00f0holt",
+            "description": "\u00deessi v\u00f6llur er efst \u00ed Elli\u00f0a\u00e1rdalnum en \u00fer\u00edr teigar \u00e1 hverri braut. V\u00f6llurinn er \u00ed n\u00e1tt\u00farulegu umhverfi og \u00fev\u00ed er mikilv\u00e6gt a\u00f0 fylgjast vel me\u00f0 diskunum til \u00feess a\u00f0 t\u00fdna \u00feeim ekki s\u00e9rstaklega n\u00e1l\u00e6gt l\u00fap\u00ednunni. \u00c1 fyrstu og n\u00edundu braut er kasta\u00f0 n\u00e1l\u00e6gt vatni sem getur veri\u00f0 erfitt. Vi\u00f0 r\u00e1\u00f0leggjum \u00f6llum byrjendum \u00e1 a\u00f0 spila af rau\u00f0u teigunum.",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/Brei\u00f0holt2.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Reykjav\u00edk \u2013 Fossvogsdalur\u00a0",
+            "description": "Sumari\u00f0 2014 var opna\u00f0ur fr\u00e1b\u00e6r v\u00f6llur \u00e1 \u00feessum skemmtilega sta\u00f0. Brautirnar liggja beggja vegna b\u00e6jarmarka Reykjav\u00edkur og K\u00f3pavogs og er vallarst\u00e6\u00f0ir einkar fallegt me\u00f0 tj\u00f6rnum, h\u00e1um trj\u00e1m og fallegum grasfl\u00f6tum. Fyrsta braut er vestast \u00ed dalnum (Landssp\u00edtalamegin).",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/fossvogur.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Reykjav\u00edk\u00a0\u2013\u00a0Grafarholt",
+            "description": "\u00cd Leirdal \u00ed Grafarholti var settur upp v\u00f6llur \u00ed september 2017. \u00deetta er flottur 9 brauta v\u00f6llur sem liggur \u00e1 skemmtilegu sv\u00e6\u00f0i \u00ed sk\u00f3glendi sem \u00fearna er. \u00c1 \u00feessum velli er lengsta braut landsins, heilir 201 metrar, og \u00e1 \u00feessu sv\u00e6\u00f0i er einnig komi\u00f0 fyrsta \u00e6fingakastsv\u00e6\u00f0i\u00f0 h\u00e9r \u00e1 landi (driving range). Sumari\u00f0 2018 voru settir flottir gervigrasteigar \u00e1 allar brautir sem gerir v\u00f6llinn einn \u00feann flottasta \u00e1 landinu.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/08/IMG_2814-1024x768.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Reykjav\u00edk \u2013 Gufunes \u00ed Grafarvogi",
+            "description": "\u00cd Gufunesi er eini 18 brauta v\u00f6llurinn og er hann mj\u00f6g skemmtilegur, fj\u00f6lbreyttur og krefjandi \u00fear sem finna m\u00e1 nokkrar af lengstu brautum landsins. \u00c1 hverri braut eru \u00ferj\u00e1r\u00a0ger\u00f0ir af teigum; l\u00e9ttir, mi\u00f0lungs og erfi\u00f0ir. St\u00f3rt kort er vi\u00f0 b\u00edlast\u00e6\u00f0i\u00f0 sem l\u00fdsir vel vellinum. Teigarnir \u00e1 fyrstu holu eru r\u00e9tt vi\u00f0 b\u00edlast\u00e6\u00f0i\u00f0. V\u00f6llurinn var tekinn \u00ed notkun sumari\u00f0 2003.",
+            "holes": "18",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/gufunes2.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Reykjav\u00edk \u2013 Klambrat\u00fan",
+            "description": "Einn vins\u00e6lasti frisb\u00edgolfv\u00f6llur landsins er\u00a0\u00e1 Klambrat\u00fani \u00ed hjarta Reykjav\u00edkur en v\u00f6llurinn var hanna\u00f0ur og settur upp sumari\u00f0 2011. \u00c1 vellinum eru 9 fj\u00f6lbreyttar brautir en umhverfi\u00f0 \u00e1 Klambrat\u00fani er mj\u00f6g hentugt fyrir frisb\u00edgolf me\u00f0 h\u00e1um trj\u00e1m og gr\u00f3\u00f0ri sem b\u00faa til skemmtilegar hindranir fyrir alla folfara. V\u00f6llurinn er mj\u00f6g hentugur fyrir byrjendur \u00ed sportinu en einnig \u00fe\u00e1 sem lengra eru komnir. Lengsta brautin er 98 metrar.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/klambra2.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Reykjav\u00edk \u2013 Laugardalur\u00a0",
+            "description": "Skemmtilegur v\u00f6llur \u00e1 besta sta\u00f0 \u00ed Reykjav\u00edk. Tveir teigar eru \u00e1 hverri braut, rau\u00f0ur og hv\u00edtur og eru hv\u00edtu teigarnir hellulag\u00f0ir til \u00feess a\u00f0 n\u00e1 sem bestu upphafsskoti. Best er a\u00f0 leggja b\u00edlnum vi\u00f0 KFUM heimili\u00f0 Holtavegi \u00fev\u00ed \u00fear er fyrsta braut. V\u00f6llurinn liggur \u00ed \u00e1tt a\u00f0 TBR h\u00fasinu. H\u00e9r er kort af vellinum.",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2014/08/MG_9802-1024x682.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Reykjav\u00edk \u2013 Seljadalur \u2013 Seljahverfi\u00a0",
+            "description": "Sumari\u00f0 2015 var tekinn \u00ed notkun v\u00f6llurinn \u00ed Seljadal\u00a0 \u00ed Brei\u00f0holti en hann er stuttur 9 brauta og liggur upp og ni\u00f0ur dalinn. Fyrsti teigur er vi\u00f0 Seljakirkju (Barnaheimili\u00f0). V\u00f6llurinn er mj\u00f6g hentugur \u00feeim sem eru a\u00f0 byrja \u00ed sportinu og upp\u00e1haldsv\u00f6llur margra.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/IMG_5974-1024x683.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Seltjarnarnes\u00a0\u2013 Valh\u00fasah\u00e6\u00f0\u00a0",
+            "description": "\u00dearna er skemmtilegur 9 brauta v\u00f6llur og er fyrsta karfan vi\u00f0 kirkjuna.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/07/seltjarnarnes.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Akranes \u2013 Gar\u00f0alundur",
+            "description": "\u00cd fallegu umhverfi \u00ed Gar\u00f0alundi er flottur 9 brauta v\u00f6llur en \u00fear eru fj\u00f6lbreyttar brautir me\u00f0 miklum gr\u00f3\u00f0ri, v\u00f6tnum og \u00f3l\u00edkum hindrunum. Tveir teigar eru \u00e1 \u00f6llum brautum, annar l\u00e9ttur fyrir b\u00f6rn og byrjendur en hinn fyrir vanari spilara. Sumari\u00f0 2018 var kl\u00e1ra\u00f0 a\u00f0 endurn\u00fdja elstu k\u00f6rfurnar \u00e1 vellinum.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/akranes.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Bifr\u00f6st",
+            "description": "Vi\u00f0 H\u00e1sk\u00f3lann \u00e1 Bifr\u00f6st er l\u00edtill 6 brauta v\u00f6llur \u00ed skemmtilegu umhverfi. \u00c1 vellinum eru fyrstu k\u00f6rfurnar sem sm\u00ed\u00f0a\u00f0ar voru h\u00e9r \u00e1 landi og settar fyrst upp \u00ed Gufunesi.",
+            "holes": "6",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2019/07/bifro\u0308st2.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "B\u00fa\u00f0ardalur",
+            "description": "Vori\u00f0 2017 var settur upp 9 brauta v\u00f6llur \u00e1 B\u00fa\u00f0ardal \u00e1 skemmtilegum sta\u00f0 \u00ed b\u00e6num. Upplagt a\u00f0 taka hring ef f\u00f3lk er \u00e1 lei\u00f0inni um sv\u00e6\u00f0i\u00f0. Fyrsta braut byrjar vi\u00f0 tjaldsv\u00e6\u00f0i\u00f0.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/05/B\u00fa\u00f0ardalur-skilti-2017-150x100-prent5-1024x689.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Hvanneyri\u00a0",
+            "description": "Hausti\u00f0 2017 var settur upp skemmtilegur 9 brauta v\u00f6llur \u00e1 Hvanneyri. V\u00f6llurinn er me\u00f0 einum teig \u00e1 hverri braut og er fj\u00f6lbreyttur og krefjandi. Fyrsti teigur er vi\u00f0 kirkjuna.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/06/Hvanneyri-IMG_2362-1024x746.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Vatnask\u00f3gur",
+            "description": "",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/06/Hvanneyri-IMG_2362-1024x746.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Bolungarv\u00edk",
+            "description": "Hausti\u00f0 2015 var opna\u00f0ur 9 k\u00f6rfu v\u00f6llur \u00ed Bern\u00f3dusarlundi og er v\u00f6llurinn me\u00f0 2 teiga \u00e1 hverri braut. \u00cd lundinum er skemmtilegt umhverfi me\u00f0 fj\u00f6lbreyttum gr\u00f3\u00f0ri og trj\u00e1m. H\u00e6\u00f0amunur gerir v\u00f6llinn krefjandi en kasta\u00f0 er b\u00e6\u00f0i upp og ni\u00f0ur halla sem \u00fearna er. \u00c1 sumrin getur veri\u00f0 t\u00f6luver\u00f0 l\u00fap\u00edna en \u00fe\u00e1 er gott a\u00f0\u00a0taka vel eftir ef diskurinn lendir \u00ed henni.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/Bolungarv\u00edk.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Drangsnes",
+            "description": "Sumari\u00f0 2017 var settur upp 5 brauta v\u00f6llur Drangsnesi. V\u00f6llurinn er sta\u00f0settur vi\u00f0 tjaldsv\u00e6\u00f0i\u00f0 og er fyrsti folfv\u00f6llur \u00e1 \u00feessu hluta landsins.<br />H\u00e9r er h\u00e6gt a\u00f0 n\u00e1lgast kort af vellinum. <strong><a href=\"http://www.folf.is/wp-content/uploads/2011/07/Drangsnes.jpg\">S\u00e6kja kort</a></strong>",
+            "holes": "5",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/07/Drangsnes-922x1024.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Flateyri",
+            "description": "Sumari\u00f0 2013 t\u00f3ku nokkrir hressir str\u00e1kar sig til og sm\u00ed\u00f0u\u00f0u k\u00f6rfur \u00far allskyns afg\u00f6ngum og settu upp v\u00f6ll \u00e1 Flateyri. Hann er sta\u00f0settur \u00e1 Str\u00e1kav\u00f6llum og er mj\u00f6g skemmtilegur.",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/1009820_10151506405642100_1304108573_n.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Reykh\u00f3lar",
+            "description": "Sumari\u00f0 2017 var settur upp stuttur en krefjandi 9 brauta v\u00f6llur \u00e1 \u00feessum flotta sta\u00f0 \u00ed Reykh\u00f3lahreppi. Tveir teigar eru \u00e1 hverri braut.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/05/Reykh\u00f3larkort-1024x766.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Akureyri \u2013\u00a0Ei\u00f0sv\u00f6llur \u2013 p\u00fattv\u00f6llur",
+            "description": "\u00c1 Ei\u00f0svelli er skemmtilegur p\u00fattv\u00f6llur me\u00f0 stuttum brautum en n\u00f3g er a\u00f0 taka me\u00f0 s\u00e9r p\u00fatterinn \u00feegar \u00feessi v\u00f6llur er spila\u00f0ur.",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/Ei\u00f0sv\u00f6llur-1024x700.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Akureyri \u2013\u00a0Gler\u00e1rsk\u00f3li",
+            "description": "",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/Ei\u00f0sv\u00f6llur-1024x700.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Akureyri \u2013 Hamarkotst\u00fan",
+            "description": "Sumari\u00f0 2014 var settur upp 9 brauta v\u00f6llur \u00e1 Hamarkotst\u00fani vi\u00f0 \u00de\u00f3runnarstr\u00e6ti (gengt sundlauginni). Flestar eru brautirnar frekar stuttar en krefjandi en tveir teigar eru \u00e1 hverri braut. V\u00f6llurinn er mj\u00f6g skemmtilegur og umhverfi\u00f0 fallegt. V\u00f6llurinn er me\u00f0 vins\u00e6lli folfv\u00f6llum \u00e1 landinu enda \u00f3f\u00e1ir \u00e1sar sem \u00fearna koma. Gott er spila me\u00f0 p\u00fatterum e\u00f0a midrange diskum \u00e1 vellinum.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/hamrakotst\u00fan-1024x682.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Akureyri \u2013 Hamrar",
+            "description": "\u00deessi skemmtilegi og fj\u00f6lbreytti 18 brauta v\u00f6llur liggur fyrir ofan tjaldsv\u00e6\u00f0i\u00f0 a\u00f0 H\u00f6mrum og n\u00e6r inn \u00ed Kjarnask\u00f3g en fyrsta brautin er reyndar inn \u00e1 tjaldsv\u00e6\u00f0inu og \u00fe\u00e1 er kasta\u00f0 yfir eina af tj\u00f6rnunum sem \u00fear eru. V\u00f6llurinn reynir t\u00f6luvert \u00e1 h\u00e6fni spilara en h\u00e6gt er a\u00f0 velja um hv\u00edta og rau\u00f0a teiga. Sumari\u00f0 2018 var v\u00f6llurinn st\u00e6kka\u00f0ur \u00ed 18 brautir og er eini v\u00f6llurinn \u00ed\u00b4\u00feeirri st\u00e6r\u00f0 fyrir utan Gufunesi\u00f0 \u00ed Reykjav\u00edk. Skorkort og kort f\u00e1st \u00ed \u00fej\u00f3nustumi\u00f0st\u00f6\u00f0inni auk \u00feess sem \u00fear eru seldir diskar.",
+            "holes": "18",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/07/IMG_2920d-1024x581.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "\u00c1rsk\u00f3gsstr\u00f6nd\u00a0",
+            "description": "9\u00a0brauta v\u00f6llur var settur upp \u00e1 \u00c1rsk\u00f3gsstr\u00f6nd sumari\u00f0 2017 me\u00f0 \u00feremur k\u00f6rfum en spila\u00f0ar eru \u00ferj\u00e1r brautir \u00e1 hverja braut.",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2019/07/a\u0301rsko\u0301gsstro\u0308nd.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "H\u00f3lavatn",
+            "description": "",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2019/07/a\u0301rsko\u0301gsstro\u0308nd.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Hrafnagil Eyjafir\u00f0i",
+            "description": "Vori\u00f0 2017 var settur upp skemmtilegur 9 brauta v\u00f6llur vi\u00f0 \u00ed\u00fer\u00f3ttasv\u00e6\u00f0i\u00f0 \u00e1 Hrafnagili. V\u00f6llurinn er b\u00e6\u00f0i me\u00f0 stuttum og l\u00f6ngum brautum og er krefjandi fyrir alla spilara.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/6243756432__MG_8790-1024x683.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Hr\u00edsey",
+            "description": "Sumari\u00f0 2014 var settur upp flottur 9 k\u00f6rfu v\u00f6llur \u00ed Hr\u00edsey \u00e1 fr\u00e1b\u00e6rum sta\u00f0 \u00ed sk\u00f3gr\u00e6ktinni me\u00f0 upphafsteig vi\u00f0 gamla sk\u00f3lann. Tveir teigar eru \u00e1 hverri braut sem gerir v\u00f6llinn hentugan fyrir byrjendur sem og lengra komna.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2014/07/10410142_10203712310961799_904897210235008905_n.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "H\u00fasav\u00edk",
+            "description": "\u00c1 H\u00fasav\u00edk er flottur 5 brauta v\u00f6llur en er hann sta\u00f0settur r\u00e9tt austan vi\u00f0 b\u00e6inn.",
+            "holes": "5",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/08/IMG_2913-1024x768.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Sau\u00f0\u00e1rkr\u00f3kur\u00a0",
+            "description": "\u00c1 Sau\u00f0\u00e1rkr\u00f3ki er 9 brauta v\u00f6llur sem sta\u00f0settur er n\u00e1l\u00e6gt \u00ed\u00fer\u00f3ttasv\u00e6\u00f0inu. V\u00f6llurinn var settur upp fyrir Landsm\u00f3t UMF\u00cd 2018.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/08/sau\u00f0a\u0301rkro\u0301kur.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Svalbar\u00f0seyri",
+            "description": "\u00c1 Svalbar\u00f0seyri er 9 brauta v\u00f6llur sem settur var upp sumari\u00f0 2018.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2019/07/svalba.png",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Ei\u00f0ar",
+            "description": "",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2019/07/svalba.png",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Eyrarbakki",
+            "description": "",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2019/07/svalba.png",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Egilssta\u00f0ir\u00a0\u2013 Tjarnargar\u00f0urinn\u00a0",
+            "description": "\u00cd \u00feessu fr\u00e1b\u00e6ra umhverfi er 6 brauta v\u00f6llur sem opna\u00f0ur var sumari\u00f0 2015.",
+            "holes": "6",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2019/07/Tjarnagar\u00f0urinn.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "F\u00e1skr\u00fa\u00f0sfj\u00f6r\u00f0ur",
+            "description": "Vori\u00f0 2018 var settur upp skemmtilegur 9 brauta v\u00f6llur \u00e1 F\u00e1skr\u00fa\u00f0sfir\u00f0i.<br /><a href=\"http://www.folf.is/wp-content/uploads/2018/06/Fa\u0301skru\u0301\u00f0sfjo\u0308r\u00f0ur.jpg\"><strong>S\u00e6kja kort.</strong></a>",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/06/Fa\u0301skru\u0301\u00f0sfjo\u0308r\u00f0ur-1024x576.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "M\u00f6\u00f0rudalur \u00e1 Fj\u00f6llum",
+            "description": "Sumari\u00f0 2010 var settur upp skemmtilegur v\u00f6llur me\u00f0 3 k\u00f6rfum \u00e1 \u00feennan afskekkta og \u00f3vanalega sta\u00f0.",
+            "holes": "3",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2019/07/mo\u0308\u00f0rudalur-a\u0301-fjo\u0308llum.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Neskaupssta\u00f0ur",
+            "description": "Sumari\u00f0 2016 var settur 9 brauta v\u00f6llur \u00e1 skemmtilegt sv\u00e6\u00f0i vi\u00f0 snj\u00f3fl\u00f3\u00f0avarnargar\u00f0ana.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/S\u00fanv\u00f6llurinn.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Apavatn\u00a0\u2013 \u00e1 tjaldsv\u00e6\u00f0i\u00a0Rafi\u00f0na\u00f0arsambands \u00cdslands",
+            "description": "",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/S\u00fanv\u00f6llurinn.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Eyrarbakki",
+            "description": "",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/S\u00fanv\u00f6llurinn.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "\u00c1rnes (Skei\u00f0a- og Gn\u00fapverjahreppi)",
+            "description": "Sumari\u00f0 2018 var settur upp skemmtilegur 9 brauta v\u00f6llur vi\u00f0 \u00c1rnes.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2019/07/Frisbi\u0301golfvo\u0308llur-A\u0301rnes-skilti-2018-768x1024.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Fl\u00fa\u00f0ir",
+            "description": "Sumari\u00f0 2014 var settur upp 9 brauta v\u00f6llur \u00e1 skemmtilegu sv\u00e6\u00f0i \u00e1 Fl\u00fa\u00f0um \u00ed Hrunamannahreppi. V\u00f6llurinn byrjar vi\u00f0 b\u00edlast\u00e6\u00f0i\u00f0 vi\u00f0 f\u00e9lagsheimili\u00f0 og liggur \u00ed hring me\u00f0 \u00e1nni sem \u00fear liggur. \u00deessi v\u00f6llur er nokku\u00f0 erfi\u00f0ur yfirfer\u00f0ar og au\u00f0velt a\u00f0 t\u00fdna diskum.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2014/08/fl\u00fa\u00f0ir.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Hella\u00a0",
+            "description": "Sumari\u00f0 2017 var settur upp flottur 9 brauta v\u00f6llur \u00e1 Hellu. Hann stendur \u00e1 b\u00f6kkum Ytri-Rang\u00e1r nyrst \u00ed \u00feorpinu. V\u00f6llurinn er \u00ed fallegur og gr\u00f3\u00f0urs\u00e6lu umhverfi.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/05/IMG_2214-1024x768.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Hvolsv\u00f6llur\u00a0",
+            "description": "Sumari\u00f0 2017 var settur upp flottur 9 brauta v\u00f6llur \u00e1 Hvolsvelli vi\u00f0 \u00ed\u00fer\u00f3ttasv\u00e6\u00f0i\u00f0.\u00a0V\u00f6llurinn er fj\u00f6lbreyttur og skemmtilegur.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/08/IMG_2828-1024x768.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "H\u00f6fn \u00ed Hornafir\u00f0i",
+            "description": "Sumari\u00f0 2017 var settur upp 9 brauta v\u00f6llur vi\u00f0 tjaldsv\u00e6\u00f0i\u00f0 \u00e1 H\u00f6fn. V\u00f6llurinn liggur \u00ed su\u00f0ur af tjaldsv\u00e6\u00f0inu og n\u00fdtir b\u00e6\u00f0i sk\u00f3glendi og h\u00e6\u00f0amismun vel.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/07/hofn.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Mi\u00f0h\u00fasask\u00f3gur (vi\u00f0 Laugarvatn)",
+            "description": "\u00c1 sv\u00e6\u00f0i VR \u00ed Mi\u00f0h\u00fasask\u00f3gi vi\u00f0 Laugarvatn er skemmtilegur 5 brauta\u00a0v\u00f6llur. Fj\u00f6lbreytt kjarrlendi er \u00e1 \u00feessu sv\u00e6\u00f0i sem gerir v\u00f6llinn krefjandi og \u00e1hugaver\u00f0an.",
+            "holes": "5",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/midhus-1024x768.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Selfoss",
+            "description": "Sumari\u00f0 2017 kom upp v\u00f6llur \u00e1 tjaldsv\u00e6\u00f0inu \u00e1 Selfossi. \u00deetta er 9 brauta v\u00f6llur sem liggur umhverfis tjaldsv\u00e6\u00f0i\u00f0 og n\u00fdtir vel \u00feann gr\u00f3\u00f0ur sem \u00fearna er.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/07/Selfoss-1024x768.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Stokkseyri",
+            "description": "9 brauta v\u00f6llur sem settur var upp sumari\u00f0 2017. V\u00f6llurinn er sta\u00f0settur \u00e1 fj\u00f6lbreyttu sv\u00e6\u00f0i vi\u00f0 tjaldsv\u00e6\u00f0i\u00f0.",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/stokkseyrikort-1024x850.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "\u00dalflj\u00f3tsvatn",
+            "description": "Vi\u00f0 \u00datil\u00edfsmi\u00f0st\u00f6\u00f0 sk\u00e1ta \u00e1 \u00dalflj\u00f3tsvatni er skemmtilegur 10 holu v\u00f6llur sem er mj\u00f6g &#8220;sk\u00e1talegur&#8221; \u00fe.e. hann liggur um fj\u00f6lbreytt landslag. \u00deetta er elsti v\u00f6llur landsins og settur upp sumari\u00f0 2002 en fyrri hluti vallarins er inn \u00e1 tjaldsv\u00e6\u00f0inu en seinni hluti liggur me\u00f0fram fallegum l\u00e6k. Fyrsta holan er vi\u00f0 a\u00f0alhli\u00f0i\u00f0 inn \u00e1 tjaldsv\u00e6\u00f0i\u00f0 og s\u00ed\u00f0asta holan endar \u00fear r\u00e9tt hj\u00e1. H\u00e6gt er a\u00f0 f\u00e1 leig\u00f0a diska \u00ed \u00fej\u00f3nustumi\u00f0st\u00f6\u00f0inni.",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/\u00falflj\u00f3ts.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Vestmannaeyjar",
+            "description": "Sumari\u00f0 2016 var tekinn \u00ed notkun 6 brauta v\u00f6llur \u00ed Vestmannaeyjum en hann er r\u00e9tt vi\u00f0 \u00ed\u00fer\u00f3ttah\u00fasi\u00f0 og sundlaugina.",
+            "holes": "6",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/08/IMG_2850-1024x768.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "V\u00edk \u00ed M\u00fdrdal",
+            "description": "6 brauta v\u00f6llur var settur upp vori\u00f0 2019 vi\u00f0 Syngjandann \u00e1 V\u00edk.",
+            "holes": "10",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2019/07/vi\u0301k.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Grindav\u00edk",
+            "description": "2018 voru settar upp fyrstu fj\u00f3rar k\u00f6rfurnar \u00e1 vellinum \u00ed Sj\u00f3mannagar\u00f0inum \u00e1 m\u00f3ti M\u00e1nag\u00f6tu. Stefnt er a\u00f0 \u00fev\u00ed a\u00f0 st\u00e6kka hann \u00ed 9 brautir \u00e1 n\u00e6sta \u00e1ri.",
+            "holes": "9",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2018/06/grindavik-1024x971.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        },
+        {
+            "name": "Reykjanesb\u00e6r\u00a0\u2013\u00a0R\u00f3mant\u00edskasv\u00e6\u00f0i\u00f0",
+            "description": "Sumari\u00f0 2016 var settur upp 8 brauta v\u00f6llur \u00e1 \u00feessu skemmtilega sv\u00e6\u00f0i vi\u00f0 A\u00f0alg\u00f6tu (\u00e1 m\u00f3ts vi\u00f0 Vatnsholt). V\u00f6llurinn er me\u00f0 stuttum brautum og liggur fram og til baka \u00ed fj\u00f6lbreyttu landslagi.",
+            "holes": "8",
+            "thumbnail": "http://www.folf.is/wp-content/uploads/2011/07/IMG_5352-1024x768.jpg",
+            "layouts": [
+                {
+                    "difficulty": 0,
+                    "length": 0,
+                    "par": 0
+                }
+            ],
+            "oftenPlayed": 0,
+            "rating": 0
+        }
+    ]
+}
