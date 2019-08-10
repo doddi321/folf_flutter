@@ -6,8 +6,9 @@ class GameModel{
   List<SelectedPlayerModel> players;
   CourseModel course;
   String gameId;
+  String date;
 
-  GameModel({@required this.players, @required this.course});
+  GameModel({@required this.players, @required this.course, this.date, this.gameId});
 
    Map<String, dynamic> toJson() =>
   {

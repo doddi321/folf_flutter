@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:folf/models/selectedPlayerModel.dart';
+import 'package:folf/services/localDatabaseService.dart';
 
 class SelectedPlayersProvider with ChangeNotifier {
-  List<SelectedPlayerModel> players;
+  List<SelectedPlayerModel> players = [];
 
   SelectedPlayersProvider() {
-    players = [];
+    // get players from database
+    LocalDatabaseService.instance.queryDisplayedPlayers().then((players) {
+      this.players = players;
+      notifyListeners();
+    });
   }
 
   SelectedPlayersProvider.copyConstructor(List<SelectedPlayerModel> players) {
@@ -17,7 +22,11 @@ class SelectedPlayersProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void addPlayer(SelectedPlayerModel player) {
+  void addPlayer(SelectedPlayerModel player, bool fake) async {
+    // add to local database
+    String playerId = await LocalDatabaseService.instance.insertPlayer(player, fake);
+    player.userId = playerId;
+    // add to list
     players.add(player);
     notifyListeners();
   }

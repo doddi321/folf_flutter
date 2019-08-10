@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:folf/constants/myIcons.dart';
 import 'package:folf/pages/MainPage/courses/coursesPage.dart';
+import 'package:folf/pages/MainPage/scoreBoardPage.dart';
 import 'package:folf/pages/MainPage/userPage.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -54,8 +54,12 @@ class  MainPageState extends State <MainPage> {
     switch (_bottomNavigationIndex) {
       case COURSES:
         return CoursesPage();
+
       case USER:
         return UserPage();
+
+      case SCOREBOARDS:
+        return ScoreBoardsPage();
     }
 
     return Container(child: Text("data"));

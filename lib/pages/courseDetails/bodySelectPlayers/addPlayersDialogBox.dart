@@ -73,7 +73,7 @@ class _AddPlayerDialogBoxState extends State<AddPlayerDialogBox> {
               addPlayer(SelectedPlayerModel(
                   name: textEditingController.text,
                   imageUrl: "",
-                  userId: "fake"));
+                  userId: ""), true);
               Navigator.pop(context, true);
             }
           }),

@@ -10,6 +10,12 @@ class UserManagement {
 
   UserManagement(this._context);
 
+
+  static Future<bool> isUserLoggedIn() async {
+    var currUser = await FirebaseAuth.instance.currentUser();
+    return currUser != null; 
+  }
+
   /*
     creates user for authentication via email and password
   */

@@ -152,12 +152,12 @@ packages:
     source: hosted
     version: "1.6.2"
   path_provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path_provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.2"
+    version: "1.2.0"
   pedantic:
     dependency: transitive
     description:
@@ -206,12 +206,12 @@ packages:
     source: hosted
     version: "1.5.5"
   sqflite:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: sqflite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.6+1"
+    version: "1.1.6+3"
   stack_trace:
     dependency: transitive
     description:
