@@ -78,9 +78,11 @@ class LocalDatabaseService {
               )
               ''');
 
+    // create tables -----------------------------------------------------
     // create table for games
     await db.execute('''
               CREATE TABLE ${GameTable.tableName} (
+                ${GameTable.id} TEXT PRIMARY KEY,
                 ${GameTable.courseId} TEXT,
                 ${GameTable.courseName} TEXT,
                 ${GameTable.courseHoles} INT,
@@ -92,7 +94,7 @@ class LocalDatabaseService {
     await db.execute('''
               CREATE TABLE ${HoleScoresTable.tableName} (
                 ${HoleScoresTable.playerId} TEXT NOT NULL,
-                ${HoleScoresTable.gameId} INT NOT NULL,
+                ${HoleScoresTable.gameId} TEXT NOT NULL,
                 ${HoleScoresTable.holeNr} INT NOT NULL,
                 ${HoleScoresTable.score} INT NOT NULL,
                 FOREIGN KEY(${HoleScoresTable.playerId}) REFERENCES ${PlayerTable.tableName}(${PlayerTable.id}),
@@ -154,12 +156,10 @@ class LocalDatabaseService {
       List<SelectedPlayerModel> players = [];
 
       // get all playerIds in the game
-      List<Map> playerIdsInGame = await db.query(
-        HoleScoresTable.tableName,
-        distinct: true,
-        columns: [HoleScoresTable.playerId],
-        where: "${HoleScoresTable.gameId} = ${game[GameTable.id]}"
-      );
+      List<Map> playerIdsInGame = await db.query(HoleScoresTable.tableName,
+          distinct: true,
+          columns: [HoleScoresTable.playerId],
+          where: "${HoleScoresTable.gameId} = ${game[GameTable.id]}");
 
       // iterate through the players and get all their hole scores for the game
       // as well as getting player details.

@@ -13,26 +13,25 @@ class GameProvider with ChangeNotifier {
   bool userIsLoggedIn;
 
   GameProvider({this.game, this.selectedHole}) {
-    final collRef =
-        Firestore.instance.collection('games'); // reference to games collection
-    _docReference = collRef
-        .document(); // returns a new document reference with auto generated id
+    // reference to games collection
+    final collRef = Firestore.instance.collection('games');
 
-    UserManagement.isUserLoggedIn().then((value) {
-      userIsLoggedIn = value;
+    // returns a new document reference with auto generated id
+    _docReference = collRef.document();
 
-    if (userIsLoggedIn) {
+    UserManagement.isUserLoggedIn().then((userIsLoggedIn) {
+      
+      if (userIsLoggedIn) {
         // post game to firebase and update gameId in object.
         _docReference.setData(game.toJson()).then((doc) {
           game.gameId = _docReference.documentID;
         }).catchError((error) {
           print(error);
-        }); 
+        });
       }
 
       // stores game locally with id of the documen if logged in, else auto generates an id
       storeGameLocally();
-      
     });
   }
 
