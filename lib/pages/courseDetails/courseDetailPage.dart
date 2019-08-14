@@ -43,7 +43,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
     _animDetailToSelectLayout =
         Tween(begin: 0.0, end: -1.0).animate(CurvedAnimation(
       parent: _controllerDetailToSelectLayout,
-      curve: Curves.fastOutSlowIn,  
+      curve: Curves.fastOutSlowIn,
     ));
 
     // course select players button animation
@@ -156,8 +156,11 @@ class _CourseDetailPageState extends State<CourseDetailPage>
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ScoreBoardPage(players: selectedPlayers.players, course: course)
-            ),
+                builder: (context) => ScoreBoardPage(
+                    players: selectedPlayers.players
+                        .where((player) => player.isSelected)
+                        .toList(),
+                    course: course)),
           );
         },
         child: Icon(

@@ -145,6 +145,17 @@ class LocalDatabaseService {
     return game.gameId;
   }
 
+  Future<void> updateScore(
+      String gameId, String playerId, int holeNr, int score) async {
+    Database db = await database;
+    db.update(HoleScoresTable.tableName, {HoleScoresTable.score: score},
+        where: '''
+              ${HoleScoresTable.gameId} = $gameId AND 
+              ${HoleScoresTable.holeNr} = $holeNr AND
+              ${HoleScoresTable.playerId} = $playerId
+              ''');
+  }
+
   Future<List<GameModel>> queryGames() async {
     Database db = await database;
 
@@ -177,9 +188,10 @@ class LocalDatabaseService {
             fake: playerFromDb[PlayerTable.fake] == 1,
             imageUrl: "");
 
-        // initialize the inidvidualscores list
+        // initialize the inidvidualscores list and total
         selectedPlayerModel.individualScores =
             List<int>.generate(game[GameTable.courseHoles], (_) => 0);
+        selectedPlayerModel.total = 0;
 
         List<Map> scoresForPlayer = await db.query(HoleScoresTable.tableName,
             columns: [HoleScoresTable.holeNr, HoleScoresTable.score],
@@ -187,11 +199,12 @@ class LocalDatabaseService {
             where:
                 "${HoleScoresTable.gameId} = ${game[GameTable.id]} AND ${HoleScoresTable.playerId} = ${playerId[HoleScoresTable.playerId]}");
 
-        // iterate through the scores add add them to the player
+        // iterate through the scores add add them to the player and increase total
         scoresForPlayer.forEach((scoreMap) {
           int holeNr = scoreMap[HoleScoresTable.holeNr];
           int score = scoreMap[HoleScoresTable.score];
           selectedPlayerModel.individualScores[holeNr] = score;
+          selectedPlayerModel.total += score;
         });
 
         players.add(selectedPlayerModel);
@@ -219,7 +232,7 @@ class LocalDatabaseService {
 
     Database db = await database;
 
-    await dropTablesAndRecreate(db);
+    // await dropTablesAndRecreate(db);
 
     // get all players in players table that are to be displayed
     List<Map> players = await db.query(PlayerTable.tableName,

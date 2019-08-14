@@ -26,8 +26,7 @@ class _ScoreBoardPageState extends State<ScoreBoardPage> {
 
   @override
   void initState() {
-    // only take the players that are selected
-    players = players.where((player) => player.isSelected).toList();
+    // only take the players that are selecte
 
     // initialize the hole scores for each selected player
     for (int i = 0; i < players.length; i++) {

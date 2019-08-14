@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:folf/constants/myIcons.dart';
 import 'package:folf/pages/MainPage/courses/coursesPage.dart';
-import 'package:folf/pages/MainPage/scoreBoardPage.dart';
+import 'package:folf/pages/MainPage/scoreBoardsPage.dart';
 import 'package:folf/pages/MainPage/userPage.dart';
 import 'package:line_icons/line_icons.dart';
 

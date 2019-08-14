@@ -19,8 +19,9 @@ class GameProvider with ChangeNotifier {
     // returns a new document reference with auto generated id
     _docReference = collRef.document();
 
-    UserManagement.isUserLoggedIn().then((userIsLoggedIn) {
-      
+    UserManagement.isUserLoggedIn().then((value) {
+      userIsLoggedIn = value;
+
       if (userIsLoggedIn) {
         // post game to firebase and update gameId in object.
         _docReference.setData(game.toJson()).then((doc) {
@@ -46,7 +47,7 @@ class GameProvider with ChangeNotifier {
     await localDatabaseService.insertGame(game);
   }
 
-  void incramentScore(int incrament, int playerIndex, int holeNr) {
+  void incramentScore(int incrament, int playerIndex, int holeNr) async {
     if (incrament >= 0 ||
         game.players[playerIndex].individualScores[holeNr] > 0) {
       game.players[playerIndex].individualScores[holeNr] += incrament;
@@ -59,7 +60,14 @@ class GameProvider with ChangeNotifier {
           DocumentSnapshot docSnap = await transaction.get(_docReference);
           await transaction.update(docSnap.reference, game.toJson());
         });
-      } else {}
+      }
+
+      localDatabaseService = LocalDatabaseService.instance;
+      localDatabaseService.updateScore(
+          game.gameId,
+          game.players[playerIndex].userId,
+          holeNr,
+          game.players[playerIndex].individualScores[holeNr]); // score
       notifyListeners();
     }
   }
