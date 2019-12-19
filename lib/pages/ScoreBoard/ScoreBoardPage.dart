@@ -9,39 +9,39 @@ import 'package:provider/provider.dart';
 import 'HoleNumbers.dart';
 
 class ScoreBoardPage extends StatefulWidget {
-  final List<SelectedPlayerModel> players;
-  final CourseModel course;
-
-  ScoreBoardPage({this.players, this.course});
+  ScoreBoardPage();
 
   @override
-  _ScoreBoardPageState createState() => _ScoreBoardPageState(players, course);
+  _ScoreBoardPageState createState() => _ScoreBoardPageState();
 }
 
 class _ScoreBoardPageState extends State<ScoreBoardPage> {
-  List<SelectedPlayerModel> players;
+  GameProvider gameProvider;
   CourseModel course;
+  List<SelectedPlayerModel> players;
 
-  _ScoreBoardPageState(this.players, this.course);
+  _ScoreBoardPageState();
 
   @override
   void initState() {
-    // only take the players that are selecte
-
-    // initialize the hole scores for each selected player
-    for (int i = 0; i < players.length; i++) {
-      players[i].individualScores = List<int>.generate(course.holes, (_) => 0);
-      players[i].total = 0;
-    }
-
     super.initState();
+  }
+
+  void initalizeHoles() {
+    for (SelectedPlayerModel player in players) {
+      // initialize the scores to if it hasnt been already
+      if (player.individualScores == null) {
+        player.individualScores = List<int>.generate(course.holes, (_) => 0);
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    // provides the state of the game
-    GameProvider gameProvider = GameProvider(
-        game: GameModel(course: course, players: players), selectedHole: 0);
+    gameProvider = Provider.of<GameProvider>(context);
+    course = gameProvider.game.course;
+    players = gameProvider.game.players;
+    initalizeHoles();
 
     return MultiProvider(
         providers: [ChangeNotifierProvider.value(value: gameProvider)],

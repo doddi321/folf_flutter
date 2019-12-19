@@ -6,6 +6,9 @@
 - weather
 - conditions
 
+- ýta á "nota án innskráningar" og ýta til baka þá kemur svart
+- basic scoreboard ekkert tengt velli eða ehv
+
 
 APP IDEAS:
     - snorra hugmynd

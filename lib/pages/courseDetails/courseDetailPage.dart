@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:folf/constants/myColors.dart';
 import 'package:folf/models/courseModel.dart';
+import 'package:folf/models/gameModel.dart';
 import 'package:folf/pages/ScoreBoard/ScoreBoardPage.dart';
+import 'package:folf/providers/gameProvider.dart';
 import 'package:folf/providers/selectedPlayersProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -153,15 +155,23 @@ class _CourseDetailPageState extends State<CourseDetailPage>
       visible: selectingPlayers,
       child: FloatingActionButton(
         onPressed: () {
+          // provides the state of the game
+          GameProvider gameProvider = GameProvider(
+              game: GameModel(
+                  course: course,
+                  players: selectedPlayers.players
+                      .where((player) => player.isSelected)
+                      .toList()),
+              selectedHole: 0);
+
+          // this is first time seeing this game so we store it in database and in cloud
+          gameProvider.initalizeGame();
+
           Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ScoreBoardPage(
-                    players: selectedPlayers.players
-                        .where((player) => player.isSelected)
-                        .toList(),
-                    course: course)),
-          );
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ChangeNotifierProvider<GameProvider>(
+                      builder: (_) => gameProvider, child: ScoreBoardPage())));
         },
         child: Icon(
           Icons.check,

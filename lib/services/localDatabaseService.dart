@@ -68,6 +68,7 @@ class LocalDatabaseService {
 
   // SQL string to create the database
   Future _onCreate(Database db, int version) async {
+    // create tables -----------------------------------------------------
     // create table for players
     await db.execute('''
               CREATE TABLE ${PlayerTable.tableName} (
@@ -78,7 +79,6 @@ class LocalDatabaseService {
               )
               ''');
 
-    // create tables -----------------------------------------------------
     // create table for games
     await db.execute('''
               CREATE TABLE ${GameTable.tableName} (
@@ -133,7 +133,7 @@ class LocalDatabaseService {
       selectedPlayer.individualScores.forEach((score) async {
         dynamic holeScoreMap = {
           HoleScoresTable.score: score,
-          HoleScoresTable.holeNr: holeNr,
+          HoleScoresTable.holeNr: holeNr != null ? holeNr : 0,
           HoleScoresTable.playerId: selectedPlayer.userId,
           HoleScoresTable.gameId: game.gameId
         };

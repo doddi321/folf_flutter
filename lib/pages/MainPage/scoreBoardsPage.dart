@@ -3,7 +3,9 @@ import 'package:folf/constants/myColors.dart';
 import 'package:folf/models/gameModel.dart';
 import 'package:folf/models/selectedPlayerModel.dart';
 import 'package:folf/pages/ScoreBoard/ScoreBoardPage.dart';
+import 'package:folf/providers/gameProvider.dart';
 import 'package:folf/services/localDatabaseService.dart';
+import 'package:provider/provider.dart';
 
 class ScoreBoardsPage extends StatefulWidget {
   @override
@@ -55,12 +57,15 @@ class _GameInstance extends StatelessWidget {
         color: MyColors.lighGreyishBlue,
         child: InkWell(
           onTap: () {
+            GameProvider gameProvider =
+                GameProvider(game: game, selectedHole: 0);
+
             Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => ScoreBoardPage(
-                      players: game.players, course: game.course)),
-            );
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ChangeNotifierProvider<GameProvider>(
+                        builder: (_) => gameProvider,
+                        child: ScoreBoardPage())));
           },
           child: Container(
             child: Padding(

@@ -12,7 +12,9 @@ class GameProvider with ChangeNotifier {
   LocalDatabaseService localDatabaseService;
   bool userIsLoggedIn;
 
-  GameProvider({this.game, this.selectedHole}) {
+  GameProvider({this.game, this.selectedHole});
+
+  void initalizeGame() {
     // reference to games collection
     final collRef = Firestore.instance.collection('games');
 
