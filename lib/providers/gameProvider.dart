@@ -7,12 +7,15 @@ import 'package:folf/services/userManagement.dart';
 // manages state of a game
 class GameProvider with ChangeNotifier {
   GameModel game;
-  int selectedHole;
+  double holeScrollOffset = 0;
+  int selectedHole = 0;
+  int prevSelectedHole = -1;
+  bool slidingToCorrect = false;
   DocumentReference _docReference;
   LocalDatabaseService localDatabaseService;
   bool userIsLoggedIn;
 
-  GameProvider({this.game, this.selectedHole});
+  GameProvider({this.game});
 
   void initalizeGame() {
     // reference to games collection
@@ -36,11 +39,6 @@ class GameProvider with ChangeNotifier {
       // stores game locally with id of the documen if logged in, else auto generates an id
       storeGameLocally();
     });
-  }
-
-  void setSelectedHole(int selectedHole) {
-    this.selectedHole = selectedHole;
-    notifyListeners();
   }
 
   // store game locally in sqlite database
@@ -72,5 +70,11 @@ class GameProvider with ChangeNotifier {
           game.players[playerIndex].individualScores[holeNr]); // score
       notifyListeners();
     }
+  }
+
+  void setSelectedHole(int hole) {
+    prevSelectedHole = selectedHole;
+    selectedHole = hole;
+    notifyListeners();
   }
 }

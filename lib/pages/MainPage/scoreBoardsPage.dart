@@ -58,7 +58,7 @@ class _GameInstance extends StatelessWidget {
         child: InkWell(
           onTap: () {
             GameProvider gameProvider =
-                GameProvider(game: game, selectedHole: 0);
+                GameProvider(game: game);
 
             Navigator.push(
                 context,

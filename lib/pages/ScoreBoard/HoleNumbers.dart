@@ -3,54 +3,125 @@ import 'package:folf/providers/gameProvider.dart';
 import 'package:provider/provider.dart';
 
 class HoleNumbers extends StatefulWidget {
-  final holesAmount;
-  HoleNumbers({this.holesAmount});
+  final void Function(int page) slideToCorrectHole;
+  HoleNumbers({this.slideToCorrectHole});
 
-  _HoleNumbersState createState() => _HoleNumbersState(holesAmount);
+  _HoleNumbersState createState() => _HoleNumbersState();
 }
 
 class _HoleNumbersState extends State<HoleNumbers> {
-  int holesAmount;
+  final double itemWidth = 90;
+  GameProvider gameProvider;
+  ScrollController scrollController;
 
-  _HoleNumbersState(this.holesAmount);
-  @override
-  Widget build(BuildContext context) {
-    GameProvider gameProvider = Provider.of<GameProvider>(context);
-
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: holesAmount,
-      itemBuilder: (BuildContext context, int index) {
-        return Row(children: <Widget>[
-          InkWell(
-            onTap: () {
-              setState(() {
-                gameProvider.setSelectedHole(index);
-              });
-            },
-            child: Container(
-              decoration: gameProvider.selectedHole == index
-                  ? BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(width: 5, color: Colors.black)))
-                  : BoxDecoration(),
-              width: 90,
-              child: Center(
-                child: Text(
-                  (index + 1).toString(),
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-              ),
+  Widget _buildHoleNr(int index) {
+    return Stack(
+      children: <Widget>[
+        Container(
+          width: itemWidth,
+          child: Center(
+            child: Text(
+              (index + 1).toString(),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
-          index != 9
-              ? VerticalDivider(
-                  width: 0,
-                  color: Colors.grey,
-                )
-              : Container(),
-        ]);
-      },
+        ),
+        index == gameProvider.selectedHole
+            ? Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  color: Colors.black,
+                  width: itemWidth,
+                  height: 5,
+                ))
+            : Container()
+      ],
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // get state provider for game
+    gameProvider = Provider.of<GameProvider>(context);
+    scrollController =
+        ScrollController(initialScrollOffset: gameProvider.holeScrollOffset);
+
+    // function that gets run after build completes, handles setting scrollOffset and auto scrolling
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollHandler();
+    });
+
+    return Container(
+      height: 40,
+      child: ListView.builder(
+        controller: scrollController,
+        scrollDirection: Axis.horizontal,
+        itemCount: gameProvider.game.course.holes,
+        itemBuilder: (BuildContext context, int index) {
+          return Row(children: <Widget>[
+            InkWell(
+              onTap: () {
+                widget.slideToCorrectHole(index);
+              },
+              child: _buildHoleNr(index),
+            ),
+            index != gameProvider.game.course.holes
+                ? VerticalDivider(
+                    width: 0,
+                    color: Colors.grey,
+                  )
+                : Container(),
+          ]);
+        },
+      ),
+    );
+  }
+
+  int nrOfHolesDisplayed() {
+    double width = MediaQuery.of(context).size.width;
+    return width ~/ itemWidth;
+  }
+
+  String getScrollDir() {
+    if (gameProvider.selectedHole == gameProvider.prevSelectedHole + 1) {
+      return "right";
+    }
+    return "left";
+  }
+
+  bool nextScrollPage(int holesDisplayed, String direction) {
+    if (direction == "right") {
+      return (gameProvider.selectedHole % holesDisplayed) == 0;
+    } else {
+      return (gameProvider.prevSelectedHole % holesDisplayed) == 0;
+    }
+  }
+
+  void scrollToNextPage() {
+    scrollController.animateTo(gameProvider.holeScrollOffset,
+        curve: Curves.linear, duration: Duration(milliseconds: 100));
+  }
+
+  double getScrollOffset(int holesDisplayed, String dir) {
+    if (dir == "right") {
+      return gameProvider.selectedHole * itemWidth;
+    }
+    return (gameProvider.selectedHole - holesDisplayed + 1) * itemWidth;
+  }
+
+  void scrollHandler() {
+    // nr of holes displayed at each moment
+    int holesDisplayed = nrOfHolesDisplayed();
+
+    String scrollDir = getScrollDir();
+
+    // if it is time to scroll then scroll to next "scroll page"
+    if (nextScrollPage(holesDisplayed, scrollDir)) {
+      // set new scroll offset
+      gameProvider.holeScrollOffset =
+          getScrollOffset(holesDisplayed, scrollDir);
+
+      scrollToNextPage();
+    }
   }
 }

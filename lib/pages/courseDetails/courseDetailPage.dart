@@ -161,8 +161,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
                   course: course,
                   players: selectedPlayers.players
                       .where((player) => player.isSelected)
-                      .toList()),
-              selectedHole: 0);
+                      .toList()));
 
           // this is first time seeing this game so we store it in database and in cloud
           gameProvider.initalizeGame();

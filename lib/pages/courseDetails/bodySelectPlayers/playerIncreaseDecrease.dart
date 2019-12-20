@@ -1,35 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:folf/constants/myColors.dart';
+import 'package:folf/models/selectedPlayerModel.dart';
 import 'package:folf/providers/gameProvider.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 
 class PlayerIncreaseDecrease extends StatefulWidget {
   final int playerIndex;
-  PlayerIncreaseDecrease({this.playerIndex});
+  final int holeNr;
+
+  PlayerIncreaseDecrease({this.playerIndex, this.holeNr});
   PlayerIncreaseDecreaseState createState() =>
-      PlayerIncreaseDecreaseState(playerIndex);
+      PlayerIncreaseDecreaseState(playerIndex, holeNr);
 }
 
 class PlayerIncreaseDecreaseState extends State<PlayerIncreaseDecrease> {
   int playerIndex;
+  int holeNr;
+  SelectedPlayerModel player;
   GameProvider gameProvider;
 
-  PlayerIncreaseDecreaseState(
-    this.playerIndex,
-  );
+  PlayerIncreaseDecreaseState(this.playerIndex, this.holeNr);
 
   @override
   Widget build(BuildContext context) {
     gameProvider = Provider.of<GameProvider>(context);
+    player = gameProvider.game.players[playerIndex];
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        _buildPlayerInfo(gameProvider.game.players[playerIndex].total,
-            gameProvider.game.players[playerIndex].name),
-        _buildIncreaseDecrease(gameProvider.game.players[playerIndex]
-            .individualScores[gameProvider.selectedHole])
+        _buildPlayerInfo(player.total, player.name),
+        _buildIncreaseDecrease(player.individualScores[holeNr])
       ],
     );
   }
@@ -63,8 +65,7 @@ class PlayerIncreaseDecreaseState extends State<PlayerIncreaseDecrease> {
       children: <Widget>[
         InkWell(
           onTap: () {
-            gameProvider.incramentScore(
-                -1, playerIndex, gameProvider.selectedHole);
+            gameProvider.incramentScore(-1, playerIndex, holeNr);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -80,16 +81,12 @@ class PlayerIncreaseDecreaseState extends State<PlayerIncreaseDecrease> {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 24, right: 24),
-          child: Text(
-              gameProvider.game.players[playerIndex]
-                  .individualScores[gameProvider.selectedHole]
-                  .toString(),
+          child: Text(player.individualScores[holeNr].toString(),
               style: TextStyle(fontSize: 28)),
         ),
         InkWell(
           onTap: () {
-            gameProvider.incramentScore(
-                1, playerIndex, gameProvider.selectedHole);
+            gameProvider.incramentScore(1, playerIndex, holeNr);
           },
           child: Container(
             decoration: BoxDecoration(
