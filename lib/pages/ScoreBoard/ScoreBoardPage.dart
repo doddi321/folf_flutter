@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:folf/models/courseModel.dart';
 import 'package:folf/models/selectedPlayerModel.dart';
-import 'package:folf/pages/courseDetails/bodySelectPlayers/playerIncreaseDecrease.dart';
+import 'package:folf/pages/ScoreBoard/playerIncreaseDecrease.dart';
+import 'package:folf/pages/ScoreBoard/results.dart';
 import 'package:folf/providers/gameProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -48,26 +49,34 @@ class _ScoreBoardPageState extends State<ScoreBoardPage> {
         duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
   }
 
+  Widget _buildHoleScorePage(int position) {
+    return Padding(
+      padding: EdgeInsets.only(top: 20),
+      child: Column(
+          children: List<Widget>.generate(players.length, (index) {
+        return Container(
+            padding: EdgeInsets.only(left: 20, right: 20, bottom: 25),
+            child:
+                PlayerIncreaseDecrease(playerIndex: index, holeNr: position));
+      })),
+    );
+  }
+
+  Widget _buildResultsPage() {
+    return Results();
+  }
+
   Widget _buildBody() {
     return PageView.builder(
-      controller: controller,
-      itemBuilder: (context, position) {
-        return Padding(
-          padding: EdgeInsets.only(top: 20),
-          child: Column(
-              children: List<Widget>.generate(players.length, (index) {
-            return Container(
-                padding: EdgeInsets.only(left: 20, right: 20, bottom: 25),
-                child: PlayerIncreaseDecrease(
-                    playerIndex: index, holeNr: position));
-          })),
-        );
-      },
-      onPageChanged: (int page) {
+        controller: controller,
+        itemCount: course.holes + 1,
+        itemBuilder: (context, position) {
+          bool resultTab = course.holes == position;
+          return resultTab ? _buildResultsPage() : _buildHoleScorePage(position);
+        },
+        onPageChanged: (int page) {
           gameProvider.setSelectedHole(page);
-      },
-      itemCount: course.holes,
-    );
+        });
   }
 
   @override

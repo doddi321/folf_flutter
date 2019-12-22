@@ -14,28 +14,37 @@ class _HoleNumbersState extends State<HoleNumbers> {
   GameProvider gameProvider;
   ScrollController scrollController;
 
-  Widget _buildHoleNr(int index) {
-    return Stack(
-      children: <Widget>[
-        Container(
-          width: itemWidth,
-          child: Center(
-            child: Text(
-              (index + 1).toString(),
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+  Widget _buildHoleNr(int index, bool resultTab) {
+    Widget nrWidget = Text((index + 1).toString(),
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20));
+
+    Widget resultWidget = Icon(Icons.flag);
+
+    Widget child = resultTab ? resultWidget : nrWidget;
+
+    return InkWell(
+      onTap: () {
+        widget.slideToCorrectHole(index);
+      },
+      child: Stack(
+        children: <Widget>[
+          Container(
+            width: itemWidth,
+            child: Center(
+              child: child,
             ),
           ),
-        ),
-        index == gameProvider.selectedHole
-            ? Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  color: Colors.black,
-                  width: itemWidth,
-                  height: 5,
-                ))
-            : Container()
-      ],
+          index == gameProvider.selectedHole
+              ? Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    color: Colors.black,
+                    width: itemWidth,
+                    height: 5,
+                  ))
+              : Container()
+        ],
+      ),
     );
   }
 
@@ -56,15 +65,13 @@ class _HoleNumbersState extends State<HoleNumbers> {
       child: ListView.builder(
         controller: scrollController,
         scrollDirection: Axis.horizontal,
-        itemCount: gameProvider.game.course.holes,
+        itemCount: gameProvider.game.course.holes + 1,
         itemBuilder: (BuildContext context, int index) {
+          // if last index then return result tab
+          bool resultTab = gameProvider.game.course.holes == index;
+
           return Row(children: <Widget>[
-            InkWell(
-              onTap: () {
-                widget.slideToCorrectHole(index);
-              },
-              child: _buildHoleNr(index),
-            ),
+            _buildHoleNr(index, resultTab),
             index != gameProvider.game.course.holes
                 ? VerticalDivider(
                     width: 0,
