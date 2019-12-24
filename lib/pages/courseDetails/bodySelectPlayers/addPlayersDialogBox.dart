@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:folf/constants/myColors.dart';
 import 'package:folf/models/selectedPlayerModel.dart';
+import 'package:folf/pages/courseDetails/bodySelectPlayers/dropDownSearch.dart';
 import 'package:folf/providers/selectedPlayersProvider.dart';
+import 'package:folf/services/queryService.dart';
 
 class AddPlayerDialogBox extends StatefulWidget {
   final Function addPlayer;
@@ -12,8 +14,8 @@ class AddPlayerDialogBox extends StatefulWidget {
 }
 
 class _AddPlayerDialogBoxState extends State<AddPlayerDialogBox> {
-  final _formKey = GlobalKey<FormState>();
-  final textEditingController = TextEditingController();
+  final createPlayerController = TextEditingController();
+  final invitePlayerController = TextEditingController();
 
   final Function addPlayer;
   _AddPlayerDialogBoxState(this.addPlayer);
@@ -21,22 +23,36 @@ class _AddPlayerDialogBoxState extends State<AddPlayerDialogBox> {
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
-    textEditingController.dispose();
+    createPlayerController.dispose();
     super.dispose();
   }
 
-  // 1 is for creating new player, 2 is for adding existing player, 0 is for neither
-  int state = 0;
+  static const CREATE_OR_INVITE = 0;
+  static const CREATE = 1;
+  static const INVITE = 2;
+  int displaying = CREATE_OR_INVITE;
+
+  Widget getWidgetToDisplay() {
+    Widget retWidget;
+    if (displaying == CREATE_OR_INVITE) {
+      retWidget = inviteOrCreate();
+    } else if (displaying == CREATE) {
+      retWidget = create();
+    } else {
+      retWidget = invite();
+    }
+    return retWidget;
+  }
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       content: Container(
-        height: 180,
-        child: inviteOrCreate(),
+        height: 200,
+        child: getWidgetToDisplay(),
       ),
       actions: <Widget>[
-        textButton("Close", true, true, () {
+        textButton("Close", true, () {
           Navigator.pop(context, true);
         })
       ],
@@ -47,62 +63,73 @@ class _AddPlayerDialogBoxState extends State<AddPlayerDialogBox> {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Visibility(visible: state > 0, child: Text("Give new player a name")),
-          textButton("Create new player", false, state == 0, () {
+          textButton("Create new player", false, () {
             setState(() {
-              state = 1;
+              displaying = CREATE;
             });
           }),
-          Visibility(
-              visible: state != 0,
-              child: Form(
-                  key: _formKey,
-                  child: TextFormField(
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return "Name cannot be empty";
-                        }
-                        return null;
-                      },
-                      controller: textEditingController))),
           SizedBox(height: 10),
-          textButton("Add existing player", false, state == 0, () {}),
-          SizedBox(height: 10),
-          textButton("Save", false, state != 0, () {
-            if (_formKey.currentState.validate()) {
-              addPlayer(SelectedPlayerModel(
-                  name: textEditingController.text,
-                  imageUrl: "",
-                  userId: ""), true);
-              Navigator.pop(context, true);
-            }
+          textButton("Add existing player", false, () {
+            setState(() {
+              displaying = INVITE;
+            });
           }),
         ]);
   }
 
-  Widget textButton(String text, bool filled, bool visible, Function onTap) {
-    return Visibility(
-      visible: visible,
-      child: Material(
-        color: filled ? MyColors.courseDetailOrange : Colors.white,
-        child: InkWell(
-          onTap: () {
-            onTap();
-          },
-          child: Container(
-              padding: EdgeInsets.all(8.0),
-              child: Center(
-                  child: Text(
-                text,
-                style: TextStyle(
-                    color: filled ? Colors.white : MyColors.courseDetailOrange,
-                    fontSize: 14),
-              )),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                  border: Border.all(
-                      color: MyColors.courseDetailOrange, width: 1))),
-        ),
+  bool validateCreateInput() {
+    String newPlayerName = createPlayerController.text;
+    return newPlayerName.length != 0;
+  }
+
+  Widget invite() {
+    return Column(children: <Widget>[
+      DropDownSearch(),
+      SizedBox(height: 10),
+      textButton("Invite", false, () {
+        QueryService.queryUsers();
+      })
+    ]);
+  }
+
+  Widget create() {
+    return Column(children: <Widget>[
+      TextField(
+          controller: createPlayerController,
+          decoration: InputDecoration(hintText: "Input name of new player")),
+      SizedBox(height: 10),
+      textButton("Add", false, () {
+        if (validateCreateInput()) {
+          addPlayer(
+              SelectedPlayerModel(
+                  name: createPlayerController.text, imageUrl: "", userId: ""),
+              true);
+          Navigator.pop(context, true);
+        }
+      })
+    ]);
+  }
+
+  Widget textButton(String text, bool filled, Function onTap) {
+    return Material(
+      color: filled ? MyColors.courseDetailOrange : Colors.white,
+      child: InkWell(
+        onTap: () {
+          onTap();
+        },
+        child: Container(
+            padding: EdgeInsets.all(8.0),
+            child: Center(
+                child: Text(
+              text,
+              style: TextStyle(
+                  color: filled ? Colors.white : MyColors.courseDetailOrange,
+                  fontSize: 14),
+            )),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                border:
+                    Border.all(color: MyColors.courseDetailOrange, width: 1))),
       ),
     );
   }
