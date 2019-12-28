@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:folf/constants/myColors.dart';
 import 'package:folf/models/selectedPlayerModel.dart';
+import 'package:folf/models/user.dart';
 import 'package:folf/pages/courseDetails/bodySelectPlayers/dropDownSearch.dart';
-import 'package:folf/providers/selectedPlayersProvider.dart';
-import 'package:folf/services/queryService.dart';
 
 class AddPlayerDialogBox extends StatefulWidget {
   final Function addPlayer;
@@ -31,6 +30,9 @@ class _AddPlayerDialogBoxState extends State<AddPlayerDialogBox> {
   static const CREATE = 1;
   static const INVITE = 2;
   int displaying = CREATE_OR_INVITE;
+  bool displayErrorMsg = false;
+
+  User user;
 
   Widget getWidgetToDisplay() {
     Widget retWidget;
@@ -82,11 +84,30 @@ class _AddPlayerDialogBoxState extends State<AddPlayerDialogBox> {
     return newPlayerName.length != 0;
   }
 
+  void setUser(User user) {
+    this.user = user;
+  }
+
   Widget invite() {
     return Column(children: <Widget>[
-      DropDownSearch(),
+      DropDownSearch(setUser: setUser),
       SizedBox(height: 10),
-      textButton("Invite", false, () {})
+      textButton("Add", false, () {
+        if (user == null) {
+          setState(() {
+            displayErrorMsg = true;
+          });
+        } else {
+          displayErrorMsg = false;
+          SelectedPlayerModel player = SelectedPlayerModel(
+              name: user.username, userId: user.uid, fake: false, imageUrl: "");
+          addPlayer(player, false);
+        }
+      }),
+      SizedBox(height: 5),
+      displayErrorMsg
+          ? Text("player does not exist", style: TextStyle(color: Colors.red))
+          : Container()
     ]);
   }
 

@@ -3,7 +3,9 @@ import 'package:folf/models/user.dart';
 import 'package:folf/services/queryService.dart';
 
 class DropDownSearch extends StatefulWidget {
-  DropDownSearch({Key key}) : super(key: key);
+  final Function(User user) setUser;
+
+  DropDownSearch({Key key, this.setUser}) : super(key: key);
 
   @override
   _DropDownSearchState createState() => _DropDownSearchState();
@@ -27,6 +29,21 @@ class _DropDownSearchState extends State<DropDownSearch> {
 
       return usernameContains || emailContains;
     }).toList();
+  }
+
+  User getUser(String string) {
+    for (int i = 0; i < allUsers.length; i++) {
+      String email = allUsers[i].email;
+      String username = allUsers[i].username;
+
+      bool emailEquals = email != null && email == string;
+      bool usernameEquals = username != null && username == string;
+
+      if (emailEquals || usernameEquals) {
+        return allUsers[i];
+      }
+    }
+    return null;
   }
 
   Widget searchField(BuildContext context) {
@@ -54,14 +71,16 @@ class _DropDownSearchState extends State<DropDownSearch> {
                 setState(() {
                   allUsers = users;
                   filterUsers(searchString);
+                  widget.setUser(getUser(searchString));
                 });
               });
             } else {
               filterUsers(searchString);
+              widget.setUser(getUser(searchString));
             }
           },
           decoration: InputDecoration(
-            hintText: "Player name",
+            hintText: "Player username or email",
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(8),
           )),
@@ -92,7 +111,10 @@ class _DropDownSearchState extends State<DropDownSearch> {
               : Border(top: BorderSide(color: Colors.grey));
           return InkWell(
             onTap: () {
-              textController.text = userToString(filteredUsers[index]).split(" - ")[0];
+              textController.text =
+                  userToString(filteredUsers[index]).split(" - ")[0];
+              widget.setUser(getUser(textController.text));
+
               setState(() {
                 displaySearchResults = false;
               });
