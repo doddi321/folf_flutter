@@ -13,4 +13,11 @@ class User {
       'name': name,
       'username': username,
     };
+
+    User.fromMap(mapData) {
+      this.uid = mapData["uid"];
+      this.email = mapData["email"];
+      this.name = mapData["name"];
+      this.username = mapData["username"];
+    }
 }

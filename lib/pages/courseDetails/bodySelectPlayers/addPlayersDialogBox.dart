@@ -86,9 +86,7 @@ class _AddPlayerDialogBoxState extends State<AddPlayerDialogBox> {
     return Column(children: <Widget>[
       DropDownSearch(),
       SizedBox(height: 10),
-      textButton("Invite", false, () {
-        QueryService.queryUsers();
-      })
+      textButton("Invite", false, () {})
     ]);
   }
 
