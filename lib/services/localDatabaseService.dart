@@ -150,10 +150,10 @@ class LocalDatabaseService {
     Database db = await database;
     db.update(HoleScoresTable.tableName, {HoleScoresTable.score: score},
         where: '''
-              ${HoleScoresTable.gameId} = $gameId AND 
+              ${HoleScoresTable.gameId} = "$gameId" AND 
               ${HoleScoresTable.holeNr} = $holeNr AND
-              ${HoleScoresTable.playerId} = $playerId
-              ''');
+              ${HoleScoresTable.playerId} = "$playerId"
+              ''').catchError((error) => print(error));
   }
 
   Future<List<GameModel>> queryGames() async {
@@ -170,7 +170,7 @@ class LocalDatabaseService {
       List<Map> playerIdsInGame = await db.query(HoleScoresTable.tableName,
           distinct: true,
           columns: [HoleScoresTable.playerId],
-          where: "${HoleScoresTable.gameId} = ${game[GameTable.id]}");
+          where: "${HoleScoresTable.gameId} = '${game[GameTable.id]}'");
 
       // iterate through the players and get all their hole scores for the game
       // as well as getting player details.
@@ -179,7 +179,7 @@ class LocalDatabaseService {
 
         Map playerFromDb = (await db.query(PlayerTable.tableName,
                 where:
-                    "${PlayerTable.id} = ${playerId[HoleScoresTable.playerId]}"))
+                    "${PlayerTable.id} = '${playerId[HoleScoresTable.playerId]}'"))
             .first;
 
         selectedPlayerModel = SelectedPlayerModel(
@@ -197,7 +197,7 @@ class LocalDatabaseService {
             columns: [HoleScoresTable.holeNr, HoleScoresTable.score],
             distinct: true,
             where:
-                "${HoleScoresTable.gameId} = ${game[GameTable.id]} AND ${HoleScoresTable.playerId} = ${playerId[HoleScoresTable.playerId]}");
+                "${HoleScoresTable.gameId} = '${game[GameTable.id]}' AND ${HoleScoresTable.playerId} = '${playerId[HoleScoresTable.playerId]}'");
 
         // iterate through the scores add add them to the player and increase total
         scoresForPlayer.forEach((scoreMap) {

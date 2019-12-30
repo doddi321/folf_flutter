@@ -7,12 +7,14 @@ class GameModel{
   CourseModel course;
   String gameId;
   String date;
+  String ownerId;
 
-  GameModel({@required this.players, @required this.course, this.date, this.gameId});
+  GameModel({@required this.players, @required this.course, this.date, this.gameId, this.ownerId});
 
    Map<String, dynamic> toJson() =>
   {
     'players': List.generate(players.length, (index) => players[index].toJson()),
     'course': course.cid,
+    'ownerId': ownerId
   };
 }

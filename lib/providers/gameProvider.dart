@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:folf/models/gameModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:folf/models/selectedPlayerModel.dart';
 import 'package:folf/services/localDatabaseService.dart';
 import 'package:folf/services/userManagement.dart';
 
@@ -24,20 +26,36 @@ class GameProvider with ChangeNotifier {
     // returns a new document reference with auto generated id
     _docReference = collRef.document();
 
-    UserManagement.isUserLoggedIn().then((value) {
-      userIsLoggedIn = value;
+    UserManagement.getCurrUser().then((FirebaseUser currUser) async {
+      userIsLoggedIn = (currUser != null);
+      print("------------" + userIsLoggedIn.toString() + "------------------");
 
       if (userIsLoggedIn) {
+        game.ownerId = currUser.uid;
         // post game to firebase and update gameId in object.
         _docReference.setData(game.toJson()).then((doc) {
           game.gameId = _docReference.documentID;
+          storeGameLocally();
         }).catchError((error) {
           print(error);
         });
-      }
 
-      // stores game locally with id of the documen if logged in, else auto generates an id
-      storeGameLocally();
+        // update owners ownerGames list
+        /* await UserManagement.updateGamesList(game.ownerId, game.gameId, true);
+
+        // update all invited players "invitedGames" list
+        game.players.forEach((SelectedPlayerModel player) async {
+          // if player is a "real" player with an account
+          if (!player.fake) {
+            await UserManagement.updateGamesList(player.userId, game.gameId, false);
+          }
+        }); */
+
+      } // end userIsLoggedIn
+      else {
+        game.ownerId = "fake";
+        storeGameLocally(); // game id gets automatically generated in this case
+      }
     });
   }
 
@@ -47,7 +65,7 @@ class GameProvider with ChangeNotifier {
     await localDatabaseService.insertGame(game);
   }
 
-  void incramentScore(int incrament, int playerIndex, int holeNr) async {
+  void incramentScore(int incrament, int playerIndex, int holeNr) {
     if (incrament >= 0 ||
         game.players[playerIndex].individualScores[holeNr] > 0) {
       game.players[playerIndex].individualScores[holeNr] += incrament;
