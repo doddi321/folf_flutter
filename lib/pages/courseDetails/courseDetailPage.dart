@@ -6,6 +6,7 @@ import 'package:folf/pages/ScoreBoard/ScoreBoardPage.dart';
 import 'package:folf/providers/gameProvider.dart';
 import 'package:folf/providers/selectedPlayersProvider.dart';
 import 'package:folf/services/userManagement.dart';
+import 'package:folf/widgets/CustomScaffold.dart';
 import 'package:provider/provider.dart';
 
 import 'BodySelectCourse/BodySelectCourse.dart';
@@ -74,7 +75,7 @@ class _CourseDetailPageState extends State<CourseDetailPage>
 
     final double width = MediaQuery.of(context).size.width;
     return Container(
-        child: Scaffold(
+        child: CustomScaffold(
             floatingActionButton: _buildSelectPlayersButton(),
             bottomSheet: _buildStartGameButton(),
             appBar: AppBar(

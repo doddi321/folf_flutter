@@ -146,6 +146,7 @@ class _SignupFormState extends State<SignupForm> {
               setState(() {
                 isLoading = false;
               });
+              UserManagement.saveDeviceToken();
             }
 
             UserManagement(context)

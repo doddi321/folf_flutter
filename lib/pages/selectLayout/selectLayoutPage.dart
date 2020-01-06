@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:folf/models/courseModel.dart';
+import 'package:folf/widgets/CustomScaffold.dart';
 import 'BodySelectCourse.dart';
 import 'headDetails.dart';
 
@@ -18,7 +19,7 @@ class _SelectLayoutPageState extends State<SelectLayoutPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Scaffold(
+        child: CustomScaffold(
             appBar: AppBar(
               title: Text(course.name),
             ),

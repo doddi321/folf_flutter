@@ -4,6 +4,7 @@ import 'package:folf/models/selectedPlayerModel.dart';
 import 'package:folf/pages/ScoreBoard/playerIncreaseDecrease.dart';
 import 'package:folf/pages/ScoreBoard/results.dart';
 import 'package:folf/providers/gameProvider.dart';
+import 'package:folf/widgets/CustomScaffold.dart';
 import 'package:provider/provider.dart';
 
 import 'HoleNumbers.dart';
@@ -86,7 +87,7 @@ class _ScoreBoardPageState extends State<ScoreBoardPage> {
     players = gameProvider.game.players;
     initalizeHoles();
 
-    return Scaffold(
+    return CustomScaffold(
       bottomSheet: HoleNumbers(slideToCorrectHole: slideToCorrectHole),
       appBar: AppBar(
         title: Text(course.name),

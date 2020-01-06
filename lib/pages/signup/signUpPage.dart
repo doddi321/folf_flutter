@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:folf/pages/signup/signupForm.dart';
+import 'package:folf/widgets/CustomScaffold.dart';
 
 class SignUpPage extends StatelessWidget {
   @override
@@ -7,7 +8,7 @@ class SignUpPage extends StatelessWidget {
     // gesture detector is to unfocus textfield when clicked outside of form.
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(new FocusNode()),
-      child: Scaffold(
+      child: CustomScaffold(
         backgroundColor: Theme.of(context).primaryColor,
         body: Container(
             margin: EdgeInsets.only(top: 20, right: 20, left: 20),

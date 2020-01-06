@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:folf/models/user.dart';
 
@@ -55,21 +59,40 @@ class UserManagement {
     print(e);
   }
 
-  static updateGamesList(
-      String userId, String gameId, bool ownedGame) {
-    final ownerRef = Firestore.instance.collection("users").document("Lhb7TzoppxqQpq4cwbu");
+  static saveDeviceToken() async {
+    FirebaseMessaging messaging = FirebaseMessaging();
+    String token = await messaging.getToken();
+    if (token != null) {
+      FirebaseUser currUser = await getCurrUser();
+      QuerySnapshot snapshot = await Firestore.instance
+          .collection("users")
+          .where("uid", isEqualTo: currUser.uid)
+          .limit(1)
+          .getDocuments();
 
-    Firestore.instance.runTransaction((Transaction transaction) async {
-      DocumentSnapshot docSnap = await transaction.get(ownerRef);
-      User user = User.fromMap(docSnap.data);
+      DocumentReference tokenRef =
+          snapshot.documents[0].reference.collection("tokens").document(token);
 
-      if (ownedGame) {
-        user.addOwnedGame(gameId);
-      }
-      else {
-        user.addInvitedGame(gameId);
-      }
-      transaction.update(ownerRef, user.toJson());
+      await tokenRef.setData({
+        "token": token,
+        "createdAt": FieldValue.serverTimestamp(),
+        "platform": Platform.operatingSystem
+      });
+    }
+  }
+
+  static updateGamesList(String userId, String gameId, bool ownedGame) async {
+    // for some reason I had trouble implementing the transaction part straight in the dart code
+    // so I was unfortunately forced to just create a function in firebase that I delegate the transaction to
+    final HttpsCallable updateGameList =
+        CloudFunctions.instance.getHttpsCallable(
+      functionName: 'addOwnedGame',
+    );
+
+    await updateGameList.call(<String, dynamic>{
+      'userId': userId,
+      'gameId': gameId,
+      'ownedGame': ownedGame
     });
   }
 }

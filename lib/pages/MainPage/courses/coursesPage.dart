@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:folf/constants/myIcons.dart';
 import 'package:folf/models/courseModel.dart';
 import 'package:folf/pages/courseDetails/courseDetailPage.dart';
 import 'package:folf/pages/MainPage/courses/course.dart';
 import 'package:folf/providers/selectedPlayersProvider.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 

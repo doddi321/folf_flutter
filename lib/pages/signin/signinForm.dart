@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:folf/services/userManagement.dart';
 
 class SigninForm extends StatefulWidget {
   @override
@@ -126,6 +127,7 @@ class _SigninFormState extends State<SigninForm> {
                 .signInWithEmailAndPassword(email: _email, password: _password)
                 .then((response) {
               clearErrorTexts();
+              UserManagement.saveDeviceToken(); // to be able to send push notifications
               Navigator.popAndPushNamed(context, "/mainPage");
             }).catchError((e) {
               clearErrorTexts();

@@ -50,7 +50,7 @@ class _AddPlayerDialogBoxState extends State<AddPlayerDialogBox> {
   Widget build(BuildContext context) {
     return AlertDialog(
       content: Container(
-        height: 200,
+        height: 300,
         child: getWidgetToDisplay(),
       ),
       actions: <Widget>[

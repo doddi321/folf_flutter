@@ -86,7 +86,6 @@ class HeadDetails extends StatelessWidget {
                         padding: EdgeInsets.only(right: 20),
                         child: InkWell(
                           onTap: () {
-                            print("hello");
                             MapUtils.openMap(64.122448269593, -21.750268936157);
                           },
                           child: Image(

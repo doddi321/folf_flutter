@@ -1,17 +1,17 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:folf/constants/myIcons.dart';
 import 'package:folf/pages/MainPage/courses/coursesPage.dart';
 import 'package:folf/pages/MainPage/scoreBoardsPage.dart';
 import 'package:folf/pages/MainPage/userPage.dart';
+import 'package:folf/widgets/CustomScaffold.dart';
 import 'package:line_icons/line_icons.dart';
 
 class MainPage extends StatefulWidget {
-
-   MainPageState createState() =>  MainPageState();
+  MainPageState createState() => MainPageState();
 }
 
-class  MainPageState extends State <MainPage> {
-
+class MainPageState extends State<MainPage> {
   int _bottomNavigationIndex = 0;
 
   static const COURSES = 0;
@@ -20,34 +20,37 @@ class  MainPageState extends State <MainPage> {
   static const USER = 3;
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
+  }
 
-    return Scaffold(
-            appBar: AppBar(
-              title: Text("Courses"),
-            ),
-            backgroundColor: Color(0xFFF5F5F5),
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: _bottomNavigationIndex,
-              onTap: (index) {
-                setState(() {
-                  _bottomNavigationIndex = index;
-                });
-              },
-              type: BottomNavigationBarType.fixed,
-              items: <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                    icon: Icon(MyIcons.basket), title: Text("Courses")),
-                BottomNavigationBarItem(
-                    icon: Icon(LineIcons.heart_o), title: Text("Liked")),
-                BottomNavigationBarItem(
-                    icon: Icon(LineIcons.clipboard),
-                    title: Text("Scoreboards")),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.person_outline), title: Text("User"))
-              ],
-            ),
-            body: _buildBody());
+  @override
+  Widget build(BuildContext context) {
+    return CustomScaffold(
+        appBar: AppBar(
+          title: Text("Courses"),
+        ),
+        backgroundColor: Color(0xFFF5F5F5),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _bottomNavigationIndex,
+          onTap: (index) {
+            setState(() {
+              _bottomNavigationIndex = index;
+            });
+          },
+          type: BottomNavigationBarType.fixed,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+                icon: Icon(MyIcons.basket), title: Text("Courses")),
+            BottomNavigationBarItem(
+                icon: Icon(LineIcons.heart_o), title: Text("Liked")),
+            BottomNavigationBarItem(
+                icon: Icon(LineIcons.clipboard), title: Text("Scoreboards")),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person_outline), title: Text("User"))
+          ],
+        ),
+        body: _buildBody());
   }
 
   _buildBody() {

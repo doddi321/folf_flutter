@@ -3,8 +3,8 @@ class User {
   String email;
   String name;
   String username;
-  List<String> ownedGames = [];
-  List<String> invitedGames = [];
+  List<dynamic> ownedGames = [];
+  List<dynamic> invitedGames = [];
 
   User(this.email, this.name, this.username, this.uid);
 

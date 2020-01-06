@@ -28,29 +28,29 @@ class GameProvider with ChangeNotifier {
 
     UserManagement.getCurrUser().then((FirebaseUser currUser) async {
       userIsLoggedIn = (currUser != null);
-      print("------------" + userIsLoggedIn.toString() + "------------------");
 
       if (userIsLoggedIn) {
         game.ownerId = currUser.uid;
         // post game to firebase and update gameId in object.
-        _docReference.setData(game.toJson()).then((doc) {
+        _docReference.setData(game.toJson()).then((doc) async {
           game.gameId = _docReference.documentID;
+
+          // update owners ownerGames list
+          await UserManagement.updateGamesList(game.ownerId, game.gameId, true);
+
+          // update all invited players "invitedGames" list
+          game.players.forEach((SelectedPlayerModel player) async {
+            // if player is a "real" player with an account
+            if (!player.fake) {
+              await UserManagement.updateGamesList(
+                  player.userId, game.gameId, false);
+            }
+          });
+
           storeGameLocally();
         }).catchError((error) {
           print(error);
         });
-
-        // update owners ownerGames list
-        /* await UserManagement.updateGamesList(game.ownerId, game.gameId, true);
-
-        // update all invited players "invitedGames" list
-        game.players.forEach((SelectedPlayerModel player) async {
-          // if player is a "real" player with an account
-          if (!player.fake) {
-            await UserManagement.updateGamesList(player.userId, game.gameId, false);
-          }
-        }); */
-
       } // end userIsLoggedIn
       else {
         game.ownerId = "fake";

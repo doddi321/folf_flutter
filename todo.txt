@@ -13,6 +13,8 @@
 APP IDEAS:
     - snorra hugmynd
     - set spilið
-    - set spilið + vekjaraklukka + eitthvað annað kannski
     - hátalarar linkaðir saman
     - punch cards
+    - Programming challenges with solutions
+    - set spilið + vekjaraklukka + eitthvað annað kannski
+    - crossfit machine learning, learn when person changes movements from gyroscope and monitor heart rate
