@@ -34,18 +34,28 @@ class GameProvider with ChangeNotifier {
         // post game to firebase and update gameId in object.
         _docReference.setData(game.toJson()).then((doc) async {
           game.gameId = _docReference.documentID;
-
+          print(game.gameId);
           // update owners ownerGames list
           await UserManagement.updateGamesList(game.ownerId, game.gameId, true);
 
           // update all invited players "invitedGames" list
           game.players.forEach((SelectedPlayerModel player) async {
             // if player is a "real" player with an account
-            if (!player.fake) {
+            if (!player.fake && player.userId != game.ownerId) {
               await UserManagement.updateGamesList(
                   player.userId, game.gameId, false);
             }
           });
+
+          // extract the invitedplayers from the player list
+          List<String> invitedPlayerIds = game.players
+              .where((SelectedPlayerModel player) =>
+                  !player.fake && player.userId != game.ownerId)
+              .map((SelectedPlayerModel player) => player.userId)
+              .toList();
+
+          // send push notification to invited players
+          // UserManagement.sendInvites(invitedPlayerIds, game.course.name);
 
           storeGameLocally();
         }).catchError((error) {

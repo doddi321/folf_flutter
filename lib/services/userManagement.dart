@@ -95,4 +95,18 @@ class UserManagement {
       'ownedGame': ownedGame
     });
   }
+
+  /*
+    sends push notifications to invite players to game
+  */
+  static sendInvites(List<String> invitedPlayerIds, String courseName) async {
+    final HttpsCallable sendInvites = CloudFunctions.instance.getHttpsCallable(
+      functionName: 'sendInvites'
+    );
+
+    await sendInvites.call(<String, dynamic> {
+      'invitedPlayerIds': invitedPlayerIds,
+      'courseName': courseName
+    });
+  }
 }

@@ -7,7 +7,8 @@ import 'package:folf/providers/gameProvider.dart';
 import 'package:folf/services/localDatabaseService.dart';
 import 'package:provider/provider.dart';
 
-class ScoreBoardsPage extends StatefulWidget {
+class 
+ScoreBoardsPage extends StatefulWidget {
   @override
   _ScoreBoardsPageState createState() => _ScoreBoardsPageState();
 }

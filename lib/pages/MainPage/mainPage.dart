@@ -1,6 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:folf/constants/myIcons.dart';
+import 'package:folf/pages/MainPage/InvitesPage.dart';
 import 'package:folf/pages/MainPage/courses/coursesPage.dart';
 import 'package:folf/pages/MainPage/scoreBoardsPage.dart';
 import 'package:folf/pages/MainPage/userPage.dart';
@@ -18,6 +19,7 @@ class MainPageState extends State<MainPage> {
   static const LIKED = 1;
   static const SCOREBOARDS = 2;
   static const USER = 3;
+  static const INVITES = 4;
 
   @override
   void initState() {
@@ -47,7 +49,9 @@ class MainPageState extends State<MainPage> {
             BottomNavigationBarItem(
                 icon: Icon(LineIcons.clipboard), title: Text("Scoreboards")),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline), title: Text("User"))
+                icon: Icon(Icons.person_outline), title: Text("User")),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.markunread_mailbox), title: Text("Invites"))
           ],
         ),
         body: _buildBody());
@@ -63,6 +67,9 @@ class MainPageState extends State<MainPage> {
 
       case SCOREBOARDS:
         return ScoreBoardsPage();
+
+      case INVITES:
+        return InvitesPage();
     }
 
     return Container(child: Text("data"));
