@@ -52,24 +52,24 @@ class _NotificationHandlerState extends State<NotificationHandler> {
     return Row(children: <Widget>[Icon(icon), SizedBox(width: 5), Text(text)]);
   }
 
-  Widget _buildInviteMessage() {
+  Widget _buildInviteMessage(dynamic data) {
     return Container(
         child: Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         inviteText(),
         SizedBox(height: 10),
-        inviteDetail(text: "xxx", icon: Icons.person),
+        inviteDetail(text: data["ownerName"], icon: Icons.person),
         Divider(),
-        inviteDetail(text: "xxx", icon: MyIcons.basket),
+        inviteDetail(text: data["courseName"], icon: MyIcons.basket),
         Divider(),
-        inviteDetail(text: "xxx", icon: Icons.timer),
+        inviteDetail(text: data["date"], icon: Icons.timer),
       ],
     ));
   }
 
-  Widget _buildInviteDialogBox() {
-    return AlertDialog(content: _buildInviteMessage(), actions: [
+  Widget _buildInviteDialogBox(dynamic data) {
+    return AlertDialog(content: _buildInviteMessage(data), actions: [
       FlatButton(child: Text("go to invite"), onPressed: () {}),
       FlatButton(
           child: Text("close", style: TextStyle(color: Colors.red)),
@@ -89,7 +89,7 @@ class _NotificationHandlerState extends State<NotificationHandler> {
         showDialog(
             context: context,
             builder: (BuildContext context) {
-              return _buildInviteDialogBox();
+              return _buildInviteDialogBox(message["data"]);
             });
       },
       onLaunch: (Map<String, dynamic> message) async {

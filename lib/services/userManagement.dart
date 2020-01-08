@@ -81,7 +81,8 @@ class UserManagement {
     }
   }
 
-  static updateGamesList(String userId, String gameId, bool ownedGame) async {
+  static Future<void> updateOwnedGamesList(
+      String ownerId, String gameId) async {
     // for some reason I had trouble implementing the transaction part straight in the dart code
     // so I was unfortunately forced to just create a function in firebase that I delegate the transaction to
     final HttpsCallable updateGameList =
@@ -89,24 +90,43 @@ class UserManagement {
       functionName: 'addOwnedGame',
     );
 
-    await updateGameList.call(<String, dynamic>{
-      'userId': userId,
-      'gameId': gameId,
-      'ownedGame': ownedGame
-    });
+    await updateGameList
+        .call(<String, dynamic>{'ownerId': ownerId, 'gameId': gameId});
+  }
+
+  static Future<void> updateInvitedGamesLists(
+      String ownerId, String gameId, List<String> invitedPlayerIds) async {
+    print(ownerId);
+    print(gameId);
+    print(invitedPlayerIds);
+    if (invitedPlayerIds.length > 0) {
+      final HttpsCallable addInvitedGame =
+          CloudFunctions.instance.getHttpsCallable(
+        functionName: 'addInvitedGame',
+      );
+
+      await addInvitedGame.call(<String, dynamic>{
+        'ownerId': ownerId,
+        'gameId': gameId,
+        'invitedPlayerIds': invitedPlayerIds
+      });
+    }
   }
 
   /*
     sends push notifications to invite players to game
   */
-  static sendInvites(List<String> invitedPlayerIds, String courseName) async {
-    final HttpsCallable sendInvites = CloudFunctions.instance.getHttpsCallable(
-      functionName: 'sendInvites'
-    );
+  static sendInvites(List<String> invitedPlayerIds, String courseName, String ownerId) async {
+    print(invitedPlayerIds);
+    if (invitedPlayerIds.length > 0) {
+      final HttpsCallable sendInvites =
+          CloudFunctions.instance.getHttpsCallable(functionName: 'sendInvites');
 
-    await sendInvites.call(<String, dynamic> {
-      'invitedPlayerIds': invitedPlayerIds,
-      'courseName': courseName
-    });
+      sendInvites.call(<String, dynamic>{
+        'ownerId': ownerId,
+        'invitedPlayerIds': invitedPlayerIds,
+        'courseName': courseName
+      });
+    }
   }
 }

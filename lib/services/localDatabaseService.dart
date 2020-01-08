@@ -130,7 +130,7 @@ class LocalDatabaseService {
     game.players.forEach((selectedPlayer) async {
       // insert int holeScores table
       int holeNr = 0;
-      selectedPlayer.individualScores.forEach((score) async {
+      selectedPlayer.individualScores?.forEach((score) async {
         dynamic holeScoreMap = {
           HoleScoresTable.score: score,
           HoleScoresTable.holeNr: holeNr != null ? holeNr : 0,

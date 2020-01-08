@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:folf/models/gameModel.dart';
@@ -5,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:folf/models/selectedPlayerModel.dart';
 import 'package:folf/services/localDatabaseService.dart';
 import 'package:folf/services/userManagement.dart';
+import 'package:quiver/async.dart';
 
 // manages state of a game
 class GameProvider with ChangeNotifier {
@@ -16,57 +19,87 @@ class GameProvider with ChangeNotifier {
   DocumentReference _docReference;
   LocalDatabaseService localDatabaseService;
   bool userIsLoggedIn;
+  CountdownTimer countdown;
+  bool transactionInProgress = false;
 
   GameProvider({this.game});
 
-  void initalizeGame() {
+  Future<Map<String, dynamic>> performTransaction() async {
+    // update game in firebase using atomic transaction.
+    return Firestore.instance.runTransaction((transaction) async {
+      DocumentSnapshot docSnap = await transaction.get(_docReference);
+
+      if (docSnap != null) {
+        await transaction.update(docSnap.reference, game.toJson());
+      }
+    });
+  }
+
+  void resetTransactionCountdown() async {
+    // cancel previous coundown
+    if (countdown != null) {
+      countdown.cancel();
+    }
+
+    // start new countdown
+    Duration time = Duration(seconds: 2);
+    countdown = CountdownTimer(time, time);
+    countdown.listen((data) {
+      transactionInProgress = true;
+      notifyListeners();
+      performTransaction().then((data) {
+        transactionInProgress = false;
+        notifyListeners();
+      });
+    });
+  }
+
+  Future<void> initalizeGame() async {
+    game.players.forEach((SelectedPlayerModel player) {
+      if (player.individualScores == null) {
+        player.individualScores =
+            List<int>.generate(game.course.holes, (_) => 0);
+      }
+    });
+
     // reference to games collection
     final collRef = Firestore.instance.collection('games');
 
     // returns a new document reference with auto generated id
     _docReference = collRef.document();
 
-    UserManagement.getCurrUser().then((FirebaseUser currUser) async {
-      userIsLoggedIn = (currUser != null);
+    FirebaseUser currUser = await UserManagement.getCurrUser();
+    userIsLoggedIn = (currUser != null);
 
-      if (userIsLoggedIn) {
-        game.ownerId = currUser.uid;
-        // post game to firebase and update gameId in object.
-        _docReference.setData(game.toJson()).then((doc) async {
-          game.gameId = _docReference.documentID;
-          print(game.gameId);
-          // update owners ownerGames list
-          await UserManagement.updateGamesList(game.ownerId, game.gameId, true);
+    if (userIsLoggedIn) {
+      game.ownerId = currUser.uid;
+      // post game to firebase and update gameId in object.
+      await _docReference.setData(game.toJson());
+      game.gameId = _docReference.documentID;
+      print(game.gameId);
+      // update owners ownerGames list
+      await UserManagement.updateOwnedGamesList(game.ownerId, game.gameId);
 
-          // update all invited players "invitedGames" list
-          game.players.forEach((SelectedPlayerModel player) async {
-            // if player is a "real" player with an account
-            if (!player.fake && player.userId != game.ownerId) {
-              await UserManagement.updateGamesList(
-                  player.userId, game.gameId, false);
-            }
-          });
+      // extract the invitedplayers from the player list
+      List<String> invitedPlayerIds = game.players
+          .where((SelectedPlayerModel player) =>
+              !player.fake && player.userId != game.ownerId)
+          .map((SelectedPlayerModel player) => player.userId)
+          .toList();
 
-          // extract the invitedplayers from the player list
-          List<String> invitedPlayerIds = game.players
-              .where((SelectedPlayerModel player) =>
-                  !player.fake && player.userId != game.ownerId)
-              .map((SelectedPlayerModel player) => player.userId)
-              .toList();
+      await UserManagement.updateInvitedGamesLists(
+          game.ownerId, game.gameId, invitedPlayerIds);
 
-          // send push notification to invited players
-          // UserManagement.sendInvites(invitedPlayerIds, game.course.name);
+      // send push notification to invited players
+      UserManagement.sendInvites(
+          invitedPlayerIds, game.course.name, game.ownerId);
 
-          storeGameLocally();
-        }).catchError((error) {
-          print(error);
-        });
-      } // end userIsLoggedIn
-      else {
-        game.ownerId = "fake";
-        storeGameLocally(); // game id gets automatically generated in this case
-      }
-    });
+      storeGameLocally();
+    } // end userIsLoggedIn
+    else {
+      game.ownerId = "fake";
+      storeGameLocally(); // game id gets automatically generated in this case
+    }
   }
 
   // store game locally in sqlite database
@@ -82,21 +115,13 @@ class GameProvider with ChangeNotifier {
 
       game.players[playerIndex].total += incrament;
 
-      // if user is logged in -> update game in firebase using atomic transaction.
-      if (userIsLoggedIn) {
-        Firestore.instance.runTransaction((transaction) async {
-          DocumentSnapshot docSnap = await transaction.get(_docReference);
-          await transaction.update(docSnap.reference, game.toJson());
-        });
-      }
-
       localDatabaseService = LocalDatabaseService.instance;
       localDatabaseService.updateScore(
           game.gameId,
           game.players[playerIndex].userId,
           holeNr,
           game.players[playerIndex].individualScores[holeNr]); // score
-      notifyListeners();
+      //notifyListeners();
     }
   }
 
@@ -104,5 +129,14 @@ class GameProvider with ChangeNotifier {
     prevSelectedHole = selectedHole;
     selectedHole = hole;
     notifyListeners();
+  }
+
+  Stream<GameModel> get gameStream {
+    return Firestore.instance
+        .collection("games")
+        .document(game.gameId)
+        .snapshots()
+        .map((DocumentSnapshot docSnap) =>
+            GameModel.fromMap(docSnap.data, docSnap.documentID, game.course));
   }
 }

@@ -19,6 +19,7 @@ class PlayerIncreaseDecreaseState extends State<PlayerIncreaseDecrease> {
   int holeNr;
   SelectedPlayerModel player;
   GameProvider gameProvider;
+  bool transactionInProgress = false;
 
   PlayerIncreaseDecreaseState(this.playerIndex, this.holeNr);
 
@@ -65,11 +66,19 @@ class PlayerIncreaseDecreaseState extends State<PlayerIncreaseDecrease> {
       children: <Widget>[
         InkWell(
           onTap: () {
-            gameProvider.incramentScore(-1, playerIndex, holeNr);
+            setState(() {
+              if (!gameProvider.transactionInProgress) {
+                gameProvider.incramentScore(-1, playerIndex, holeNr);
+                gameProvider.resetTransactionCountdown();
+              }
+            });
           },
           child: Container(
             decoration: BoxDecoration(
-                color: MyColors.courseDetailOrange, shape: BoxShape.circle),
+                color: gameProvider.transactionInProgress
+                    ? Colors.grey
+                    : MyColors.courseDetailOrange,
+                shape: BoxShape.circle),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
               child: Icon(
@@ -80,17 +89,26 @@ class PlayerIncreaseDecreaseState extends State<PlayerIncreaseDecrease> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 24, right: 24),
-          child: Text(player.individualScores[holeNr].toString(),
-              style: TextStyle(fontSize: 28)),
-        ),
+            padding: const EdgeInsets.only(left: 24, right: 24),
+            child: gameProvider.transactionInProgress
+                ? CircularProgressIndicator()
+                : Text(player.individualScores[holeNr].toString(),
+                    style: TextStyle(fontSize: 28))),
         InkWell(
           onTap: () {
-            gameProvider.incramentScore(1, playerIndex, holeNr);
+            if (!gameProvider.transactionInProgress) {
+              setState(() {
+                gameProvider.incramentScore(1, playerIndex, holeNr);
+                gameProvider.resetTransactionCountdown();
+              });
+            }
           },
           child: Container(
             decoration: BoxDecoration(
-                color: MyColors.courseDetailOrange, shape: BoxShape.circle),
+                color: gameProvider.transactionInProgress
+                    ? Colors.grey
+                    : MyColors.courseDetailOrange,
+                shape: BoxShape.circle),
             child: Padding(
               padding: const EdgeInsets.all(4.0),
               child: Icon(

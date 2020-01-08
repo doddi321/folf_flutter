@@ -166,13 +166,32 @@ class _CourseDetailPageState extends State<CourseDetailPage>
                       .toList()));
 
           // this is first time seeing this game so we store it in database and in cloud
-          gameProvider.initalizeGame();
-
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => ChangeNotifierProvider<GameProvider>(
-                      builder: (_) => gameProvider, child: ScoreBoardPage())));
+          // and add loading screen in the mean time
+          showDialog(
+              context: context,
+              child: SizedBox(
+                  width: 5,
+                  height: 5,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Center(
+                        child: Container(
+                            height: 50,
+                            width: 50,
+                            child: CircularProgressIndicator()),
+                      ),
+                    ],
+                  )));
+          gameProvider.initalizeGame().then((_) {
+            Navigator.pop(context, true); // pop the loading show dialog scren
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ChangeNotifierProvider<GameProvider>(
+                        builder: (_) => gameProvider,
+                        child: ScoreBoardPage())));
+          });
         },
         child: Icon(
           Icons.check,

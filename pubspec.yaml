@@ -29,6 +29,7 @@ dependencies:
   path_provider: ^1.2.0
   cloud_functions: ^0.4.1+6
   firebase_messaging: ^5.1.2
+  quiver: 2.0.5
 
   flutter:
     sdk: flutter
