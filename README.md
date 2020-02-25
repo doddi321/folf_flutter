@@ -30,7 +30,9 @@ Select or invite friends to play game with
 ![Select players](myndir/select_players.png?raw=true "Select players")
 
 The scoring
+
 ![Scoring](myndir/scores.png?raw=true "Scoring")
+
 
 the scoreboard
 ![scoreboard](myndir/scoreboard.png?raw=true "scoreboard")
