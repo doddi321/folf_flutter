@@ -21,7 +21,7 @@ The course description and rating
 ![course description](myndir/course_info.png?raw=true "course description")
 
 Map of the course
-![Course map](myndir/yfirlistkort.png?raw=true "Course map")
+![Course map](myndir/yfirlitskort.png?raw=true "Course map")
 
 Select course layout
 ![Course layout](myndir/veldu_braut.png?raw=true "Select course layout")
