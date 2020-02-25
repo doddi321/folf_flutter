@@ -10,7 +10,7 @@ class Invite {
   Invite.fromMap(dynamic mapData) {
     this.date = mapData["date"];
     this.gameId = mapData["gameId"];
-    this.ownerId = mapData["ownerId"]:
+    this.ownerId = mapData["ownerId"];
     this.ownerName = mapData["ownerName"];
   }
 }

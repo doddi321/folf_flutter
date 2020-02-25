@@ -36,11 +36,7 @@ class _ScoreBoardPageState extends State<ScoreBoardPage> {
   @override
   void initState() {
     loading = false;
-    // get stream
-    // retrieve inital values for players
-    // initalizeHoles();
-    // remeber to set the todo thing in the streambuilder
-    // rember to set loading to false
+
     controller = PageController()..addListener(onScroll);
     super.initState();
   }
