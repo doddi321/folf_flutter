@@ -17,14 +17,20 @@ Small side project that was done in flutter. Its main features are:
 The list of courses
 ![course list](myndir/course_list.png?raw=true "course list")
 
-The list of courses
+The course description and rating
 ![course description](myndir/course_info.png?raw=true "course description")
 
 Map of the course
-![Course map](myndir/course_info.png?raw=true "Course map")
+![Course map](myndir/yfirlistkort.png?raw=true "Course map")
 
 Select course layout
-![Course layout](myndir/course_info.png?raw=true "Select course layout")
+![Course layout](myndir/veldu_braut.png?raw=true "Select course layout")
 
-Map of the course
-![Course map](myndir/course_info.png?raw=true "Course map")
+Select or invite friends to play game with
+![Select players](myndir/select_players.png?raw=true "Select players")
+
+The scoring
+![Scoring](myndir/scores.png?raw=true "Scoring")
+
+the scoreboard
+![scoreboard](myndir/scoreboard.png?raw=true "scoreboard")
